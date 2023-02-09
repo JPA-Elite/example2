@@ -16,13 +16,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Landing Page
-Route::get('/', function(){
+
+Route::redirect('/', '/gpay.com');
+
+Route::get('/gpay.com', function(){
     return view('home')->with([
         'users' => User::all()
     ]);
 });
-// Route::view('/', 'home');
-Route::view('/gpay.com/homepage/', 'home');
+
 Route::view('/gpay.com/about_us/', 'about');
 Route::view('/gpay.com/pricing/', 'pricing');
 Route::view('/gpay.com/demo/', 'demo');
