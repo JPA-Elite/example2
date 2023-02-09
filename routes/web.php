@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\UserController;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,8 +16,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Landing Page
-Route::view('/', 'home');
+Route::get('/', function(){
+    return view('home')->with([
+        'users' => User::all()
+    ]);
+});
+// Route::view('/', 'home');
 Route::view('/gpay.com/homepage/', 'home');
 Route::view('/gpay.com/about_us/', 'about');
 Route::view('/gpay.com/pricing/', 'pricing');
 Route::view('/gpay.com/demo/', 'demo');
+
+Route::resource('user',UserController::class);
