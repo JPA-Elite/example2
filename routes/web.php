@@ -1,7 +1,11 @@
 <?php
 
+use App\Http\Controllers\ForgotPassMailController;
 use App\Http\Controllers\UserController;
 use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,14 +23,42 @@ use Illuminate\Support\Facades\Route;
 
 Route::redirect('/', '/gpay.com');
 
-Route::get('/gpay.com', function(){
+Route::get('/gpay.com', function () {
     return view('home')->with([
         'users' => User::all()
     ]);
 });
 
-Route::view('/gpay.com/about_us/', 'about');
+Route::post('/gpay.com/dash', function (Request $request) {
+    $user = User::where('email', $request->email)->first();
+
+    if ($user && Hash::check($request->password, $user->password)) {
+        return response(
+            [
+                'message' => "successfully login",
+                'email' => $request->email,
+                'password' => $request->password
+            ]
+        );
+    } else {
+        return Redirect::back()->withErrors(
+            [
+                'login' => 'Invalid credentials!',
+                'email' => $request->email
+            ]
+        );
+    }
+});
+
+
+Route::redirect('/', '/gpay.com');
+Route::view('/gpay.com/forgot-password/', 'forgot-pass');
+
+Route::post('/gpay.com/forgot-pass-request',[ForgotPassMailController::class, 'sendForgotPassMail']);
+
+Route::view('/gpay.com/login/', 'login');
+
 Route::view('/gpay.com/pricing/', 'pricing');
 Route::view('/gpay.com/demo/', 'demo');
 
-Route::resource('user',UserController::class);
+Route::resource('user', UserController::class);

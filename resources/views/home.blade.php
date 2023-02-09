@@ -25,9 +25,6 @@
             overflow-x: hidden;
         }
 
-        /* .body::-webkit-scrollbar {
-	display: none;
-} */
 
         nav {
             z-index: 5;
@@ -149,9 +146,7 @@
             transform: rotate(-41.23deg);
         }
 
-        /* .features:hover .f-pop-up {
-	display: grid;
-} */
+  
 
         .f-pop-up>a {
             padding: 10px;
@@ -199,9 +194,7 @@
             transform: rotate(-41.23deg);
         }
 
-        /* .features:hover .f-pop-up {
-	display: grid;
-} */
+
 
         .t-pop-up>a {
             padding: 10px;
@@ -13642,7 +13635,7 @@
                 </div>
             </div>
             <div class="d-flex justify-content-center align-items-center gap-3">
-                <a class="btn_nav" href="/gpay.com/register/">
+                <a class="btn_nav" href="/gpay.com/login/">
                     <li>Log in</li>
                 </a>
                 <a class="btn_nav nav-sign-up" href="/gpay.com/sign_up-profile_information/">
