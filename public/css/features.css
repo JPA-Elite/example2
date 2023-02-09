@@ -1,0 +1,538 @@
+:root {
+    --background: #C8DCF0;
+    --nav-background: rgba(255, 255, 255, 0.72);
+}
+
+
+.body {
+    background: var(--background) !important;
+}
+
+/* Features - Client */
+.cl-background {
+    position: relative;
+    background: rgba(255, 255, 255, 0.56);
+    border-radius: 0px 600px 0px 300px;
+    width: 100%;
+    height: 700px;
+    top: 70px;
+    padding-top: 5rem;
+    display: grid;
+    margin-bottom: 18rem;
+
+}
+
+.cl-background h1 {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+
+    text-align: center;
+    margin-bottom: 40px;
+
+
+}
+
+.cust-btn {
+    width: 200px;
+    height: 60px;
+    background: #6D60F7;
+    border-radius: 10px;
+    padding: 5px;
+    cursor: pointer;
+    text-align: center;
+    margin: auto;
+}
+
+.cust-btn p {
+    font-family: 'Roboto';
+    font-weight: 700;
+    font-size: 25px;
+    color: #FFFFFF;
+    margin: auto;
+    line-height: 50px;
+    font-family: 'Roboto';
+    font-style: normal;
+}
+
+.cl-background .cust-btn {
+    width: 380px;
+    height: 70px;
+    background: #6D60F7;
+    border-radius: 10px;
+    padding: 5px;
+    cursor: pointer;
+    text-align: center;
+    margin: auto;
+}
+
+.cl-background .cust-btn p {
+    font-family: 'Roboto';
+    font-weight: 700;
+    font-size: 25px;
+    color: #FFFFFF;
+    margin: auto;
+    line-height: 60px;
+    font-family: 'Roboto';
+    font-style: normal;
+}
+
+.cl-background img {
+    margin: auto;
+    position: relative;
+    top: 30px;
+
+
+}
+
+.cl-pg {
+    width: 100%;
+    padding: 70px;
+    background: #BAC9F1;
+    border-radius: 20px;
+}
+
+.cl-pg .cust-btn {
+    width: 150px;
+    height: 50px;
+    background: #6D60F7;
+    border-radius: 10px;
+    padding: 5px;
+    cursor: pointer;
+    position: relative;
+    left: -20px;
+
+
+}
+
+.cl-pg .cust-btn p {
+    font-size: 20px;
+    line-height: 40px;
+}
+
+.cl-pg .c1-content {
+    z-index: 2;
+}
+
+.cl-pg1 .c1-circle-bg {
+    width: 520px;
+    height: 510px;
+    background: #1690E7;
+    position: absolute;
+    left: -25rem;
+    top: 77.4rem;
+    border-radius: 50%;
+    z-index: 1;
+
+}
+
+.cl-pg2 .c1-circle-bg {
+    width: 520px;
+    height: 510px;
+    background: #1690E7;
+    position: absolute;
+    right: -25rem;
+    top: 108.5rem;
+    border-radius: 50%;
+    z-index: 1;
+
+}
+
+.cl-pg3 .c1-circle-bg {
+    width: 520px;
+    height: 510px;
+    background: #1690E7;
+    position: absolute;
+    left: -25rem;
+    top: 139.5rem;
+    border-radius: 50%;
+    z-index: 1;
+
+}
+
+.cl-pg4 .c1-circle-bg {
+    width: 520px;
+    height: 510px;
+    background: #1690E7;
+    position: absolute;
+    right: -25rem;
+    top: 170.5rem;
+    border-radius: 50%;
+    z-index: 1;
+
+}
+
+/* Features - Mobile */
+.back-image {
+    position: relative !important;
+    width: 100%;
+    height: 607px;
+    background: url("/src/img/mobile.png");
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    padding: 5rem;
+}
+
+.back-image-mobile {
+    background: url("/src/img/mobile.png") !important;
+}
+
+.back-image h1 {
+    color: #FFFFFF !important;
+    font-weight: bold;
+}
+
+.back-image p {
+    color: rgb(255, 255, 255) !important;
+}
+
+.back-image .logo-img {
+    width: 140px;
+    cursor: pointer !important;
+}
+
+.back-image-mask {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(109, 96, 247, 0.514);
+    z-index: -2;
+}
+
+.mobile-cont-pg>div {
+    margin: 3rem 0 7rem 0;
+    padding-left: 5rem;
+    padding-right: 5rem;
+}
+
+.mobile-cont-pg>div img {
+    width: 400px;
+
+}
+
+.mobile-cont-pg {
+    padding: 5rem;
+    position: relative;
+    margin: 5rem 0 0 0;
+
+}
+
+.mobile-cont-pg>div p {
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.71);
+}
+
+.cust-btn {
+    width: 25%;
+    height: 50px;
+    z-index: 2;
+}
+
+.cust-btn p {
+    font-size: 16px;
+    font-weight: bold !important;
+    line-height: 40px;
+    color: #ffffffd8 !important;
+    font-family: sans-serif;
+}
+
+.features-app-set {
+    gap: 10rem;
+    background-color: #1690e71e;
+    padding: 8rem 5rem 8rem 5rem;
+}
+
+.features-app-set img {
+    width: 100px;
+    margin-top: 2rem;
+}
+
+.features-app-set>div p {
+    font-weight: 700;
+    color: rgba(0, 0, 0, 0.685);
+}
+
+.features-app-set>div:nth-child(2) {
+    background: rgba(65, 124, 226, 0.12);
+    border-radius: 20px;
+    padding: 5rem 3rem 5rem 3rem;
+}
+
+/* features - payments */
+
+.back-image .cust-btn {
+    margin: 0;
+}
+
+.back-image {
+    background: url("/src/img/back-payments.png");
+}
+
+.features-app-set .app-set-info {
+    width: 38%;
+}
+
+.features-app-set .app-set-info .app-header-txt {
+    font-size: 15px;
+    margin-top: 10px;
+}
+
+.features-app-set .copy-info {
+    position: relative;
+    top: 4rem;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.33);
+}
+
+.back-image-mileage {
+    background-image: url('/src/img/back-mileage.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin-bottom: 22rem;
+}
+
+.back-image-mileage>div h1 {
+    color: rgb(255, 255, 255) !important;
+}
+
+.back-image-mileage>div img {
+    width: 80%;
+    margin: auto;
+    padding-top: 2rem;
+}
+
+.back-image-mileage .back-image-mask {
+    background: rgba(90, 98, 162, 0.38) !important;
+}
+
+
+.cust-btn-mileage {
+    width: 300px;
+    height: 60px;
+    background: #6D60F7;
+    border-radius: 10px;
+    padding: 5px;
+    cursor: pointer;
+    text-align: center;
+    margin: auto;
+    margin-bottom: 30px;
+    position: relative;
+    top: 10px;
+
+}
+
+
+.cust-btn-mileage p {
+    line-height: 50px !important;
+    font-size: 20px;
+
+}
+
+.cust-btn-mileage-app {
+    margin: 0 !important;
+    position: relative;
+    top: 50px;
+}
+
+/* features - mileage */
+
+.mileage-features {
+    background-color: #1690E7;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.mileage-features>div {
+    background-color: #2F317A;
+    padding: 20px;
+    margin: 1px;
+    color: #9D9D9D;
+}
+
+.mileage-features>div p {
+    color: #9D9D9D;
+}
+
+.features-app-mileage>div:nth-child(2) {
+    padding: 0 !important;
+    height: 400px;
+}
+
+.features-app-mileage>div:nth-child(2) p {
+    font-size: 12px;
+
+}
+
+.features-app-mileage>div:nth-child(2) h5 {
+    font-size: 18px;
+    color: #FFFFFF;
+}
+
+/* features - expenses&re4ceipts */
+.back-image-expense {
+    background-image: url("/src/img/expense.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+/* features - expenses&re4ceipts */
+.back-image-invoice {
+    background-image: url("/src/img/invoice_back.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin-bottom: 250px;
+}
+
+.invoice-img-label {
+    z-index: 10;
+    width: 80%;
+    position: relative;
+    top: 80px;
+}
+
+/* features - estimates */
+.back-image-estimates {
+    background-image: url("/src/img/estimates_back.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+
+}
+
+/* about us */
+.about_bg_back {
+    width: 100%;
+    height: 500px;
+    background-image: url("/src/img/about_back.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.about_bg_back h1 {
+    position: relative;
+    top: 200px;
+    z-index: 1;
+}
+
+.about_bg_back h4 {
+    position: relative;
+    top: 210px;
+    z-index: 1;
+}
+
+.about_bg_back>div {
+    width: 100%;
+    height: 500px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(217, 217, 217, 0.56);
+}
+
+.about_nav_down {
+    background: rgba(0, 0, 0, 0.81);
+    height: 60px;
+    width: 100%;
+}
+
+.about_nav_down ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    height: 100%;
+}
+
+.about_nav_down ul li {
+    color: #FFFFFF;
+    font-size: 18px;
+    transition: 0.2s ease-out;
+
+
+}
+
+.about_nav_down ul li:hover {
+    border-bottom: 4px solid #1690E7;
+}
+
+.cust-btn-about {
+    width: 260px !important;
+    margin: 0 !important;
+
+}
+
+.cust-btn-about p {
+    font-size: 17px !important;
+}
+
+.logo-about {
+    background: rgba(0, 109, 211, 0.22);
+    width: 570px;
+    height: 300px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.logo-about img {
+    width: 150px !important;
+    height: 60px !important;
+}
+.logo-about .title h1 {
+    font-size: 40px;
+    font-weight: bold;
+}
+.logo-about .title p {
+    position: relative;
+    top: 10px;
+    font-weight: bold;
+    font-size: 19px !important;
+}
+
+.cust-btn-about-values{
+    width: 260px !important;
+    position: relative !important;
+    left: 0px !important; 
+}
+
+.cl-pg3-values > div:nth-child(2)  .cl-pg3-values-phrase{
+    font-weight: 600;
+}
+
+.c1-circle-bg-team{
+    top: 38rem !important;
+}
+.c1-circle-bg-story{
+    top: 70rem !important;
+}
+
+.cl-pg-about{
+    padding-top:120px !important;
+    padding-bottom:100px !important;
+}
+
+
+
+
+
+
+/* Footer */
+.fo-page {
+    position: relative;
+    width: 100%;
+    height: 350px;
+    top: 0px;
+    background: #417CE2;
+    padding: 4rem;
+}
+
+footer {
+    position: relative;
+    width: 100%;
+    height: 510px;
+    top: 0;
+    background: rgba(0, 0, 0, 0.88);
+    padding: 2rem;
+}

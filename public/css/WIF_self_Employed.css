@@ -1,0 +1,270 @@
+:root {
+    --background: #C8DCF0;
+    --nav-background: rgba(255, 255, 255, 0.72);
+}
+
+
+.body {
+    background: var(--background) !important;
+}
+
+/* Features - Client */
+.cl-background {
+    position: relative;
+    background: rgba(255, 255, 255, 0.56);
+    border-radius: 0px 600px 0px 300px;
+    width: 100%;
+    height: 700px;
+    top: 70px;
+    padding-top: 5rem;
+    display: grid;
+    margin-bottom: 18rem;
+
+}
+
+.cl-background h1 {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+
+    text-align: center;
+    margin-bottom: 40px;
+
+
+}
+
+.cust-btn {
+    width: 190px;
+    height: 5ft0px;
+    background: #6D60F7;
+    border-radius: 10px;
+    padding: 5px;
+    cursor: pointer;
+    text-align: center;
+    margin: auto;
+}
+
+.cust-btn p {
+    font-family: 'Roboto';
+    font-weight: 700;
+    font-size: 25px;
+    color: #FFFFFF;
+    margin: auto;
+    line-height: 50px;
+    font-family: 'Roboto';
+    font-style: normal;
+}
+
+.cl-background .cust-btn {
+    width: 380px;
+    height: 70px;
+    background: #6D60F7;
+    border-radius: 10px;
+    padding: 5px;
+    cursor: pointer;
+    text-align: center;
+    margin: auto;
+}
+
+.cl-background .cust-btn p {
+    font-family: 'Roboto';
+    font-weight: 700;
+    font-size: 25px;
+    color: #FFFFFF;
+    margin: auto;
+    line-height: 60px;
+    font-family: 'Roboto';
+    font-style: normal;
+}
+
+.cl-background img {
+    margin: auto;
+    position: relative;
+    top: 30px;
+
+
+}
+
+.cl-pg {
+    width: 100%;
+    padding: 70px;
+    background: #BAC9F1;
+    border-radius: 20px;
+}
+
+.cl-pg .cust-btn {
+    width: 150px;
+    height: 50px;
+    background: #6D60F7;
+    border-radius: 10px;
+    padding: 5px;
+    cursor: pointer;
+    position: relative;
+    left: -20px;
+
+
+}
+
+.cl-pg .cust-btn p {
+    font-size: 20px;
+    line-height: 40px;
+}
+
+.cl-pg .c1-content {
+    z-index: 2;
+}
+
+.cl-pg1 .c1-circle-bg {
+    width: 520px;
+    height: 510px;
+    background: #1690E7;
+    position: absolute;
+    left: -25rem;
+    top: 77.4rem;
+    border-radius: 50%;
+    z-index: 1;
+
+}
+
+.cl-pg2 .c1-circle-bg {
+    width: 520px;
+    height: 510px;
+    background: #1690E7;
+    position: absolute;
+    right: -25rem;
+    top: 108.5rem;
+    border-radius: 50%;
+    z-index: 1;
+
+}
+
+.cl-pg3 .c1-circle-bg {
+    width: 520px;
+    height: 510px;
+    background: #1690E7;
+    position: absolute;
+    left: -25rem;
+    top: 139.5rem;
+    border-radius: 50%;
+    z-index: 1;
+
+}
+
+.cl-pg4 .c1-circle-bg {
+    width: 520px;
+    height: 510px;
+    background: #1690E7;
+    position: absolute;
+    right: -25rem;
+    top: 170.5rem;
+    border-radius: 50%;
+    z-index: 1;
+
+}
+
+/* Features - Mobile */
+.back-image {
+    position: relative !important;
+    width: 100%;
+    height: 607px;
+    background: url("/src/img/mrtiller.png");
+    background-repeat: no-repeat !important;
+    background-size: cover !important; 
+    padding: 5rem;
+}
+.back-image-mobile{
+    background: url("/src/img/mrtiller.png") !important;
+}
+
+.back-image h1 {
+    margin-top: 70px;
+    color: #FFFFFF !important;
+    font-weight: 700;
+}
+
+.back-image p {
+    left: 60px;
+    top: 226px;
+    font-weight: 700;
+    font-size: 25px;
+    color: rgb(255, 255, 255) !important;
+}
+
+.back-image .logo-img {
+    width: 140px;
+    cursor: pointer !important;
+}
+
+.back-image-mask {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(109, 96, 247, 0.514);
+    z-index: -2;
+}
+
+.mobile-cont-pg>div {
+    margin: 3rem 0 7rem 0;
+    padding-left: 5rem;
+    padding-right: 5rem;
+}
+.mobile-cont-pg>div h2{
+    font-weight: bold;
+    font-size: 30px;
+}
+.mobile-cont-pg>div img {
+    width: 600px;
+
+}
+
+.mobile-cont-pg {
+    padding: 5rem;
+    position: relative;
+    margin: 5rem 0 0 0;
+
+}
+
+.mobile-cont-pg>div p {
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.71);
+}
+
+.cust-btn p {
+    font-size: 16px;
+    font-weight: bold !important;
+    line-height: 40px;
+    color: #ffffffd8 !important;
+    font-family: sans-serif;
+}
+
+/* features - payments */
+
+.back-image .cust-btn {
+    margin: 0;
+}
+.title_5 {
+    margin-top: 1.5rem;
+    margin-bottom: 5rem !important;
+}
+
+
+
+/* Footer */
+.fo-page {
+    position: relative;
+    width: 100%;
+    height: 350px;
+    top: 0px;
+    background: #417CE2;
+    padding: 4rem;
+}
+footer {
+    position: relative;
+    width: 100%;
+    height: 510px;
+    top: 0;
+    background: rgba(0, 0, 0, 0.88);
+    padding: 2rem;
+}

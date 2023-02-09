@@ -1,0 +1,312 @@
+    * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+
+    .body {
+        background-image: url("/src/img/login-back.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+        overflow: hidden;
+        width: 100%;
+        height: 600px;
+
+    }
+
+    .main-signup {
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    .sign-pg-left {
+        background: #bfd7ed;
+        height: 100%;
+        width: 50%;
+        padding: 80px;
+        z-index: 1;
+    }
+
+    .sign-pg-left select {
+        padding: 8px;
+    }
+
+    .line {
+        width: 250px;
+        height: 3px;
+        background: rgba(0, 0, 0, 0.57);
+        margin-top: 20px;
+    }
+
+    .next-button {
+        background: #6D60F7;
+        border-radius: 5px;
+        color: #FAF8FD;
+        width: 120px;
+        height: 35px;
+        border: none;
+        margin-top: 10px;
+    }
+
+    .n-b-extend {
+        width: 150px !important;
+    }
+
+    .bg-c {
+
+        width: 400px;
+        height: 400px;
+        border-radius: 50%;
+
+    }
+
+    .bg1 {
+        background: rgba(22, 144, 231, 0.62);
+        top: -450px;
+        left: 500px;
+        position: absolute;
+    }
+
+    .bg2 {
+        background: rgba(28, 147, 231, 0.33);
+        top: -450px;
+        left: 550px;
+        position: absolute;
+    }
+
+    .bg3 {
+        background: #3f3d9ac0;
+        top: 250px;
+        right: -200px;
+        position: absolute;
+    }
+
+    .bg4 {
+        background: #3F3D9A;
+        top: 220px;
+        right: -210px;
+        position: absolute;
+        opacity: 0.38;
+    }
+
+    .indicator {
+        background: #4C4E8D;
+        width: 5px;
+        height: 100px;
+    }
+
+    .indicator::before {
+        content: "1";
+        background: #4C4E8D;
+        top: -13px;
+        left: -11px;
+        position: relative;
+        color: white;
+        border-radius: 50%;
+        padding: 5px 10px 5px 10px;
+
+    }
+
+    .i-2::before {
+        background: rgba(47, 49, 122, 0.55) !important;
+    }
+
+    .indicator::after {
+        content: "2";
+        background: rgba(47, 49, 122, 0.55);
+        top: 85px;
+        left: -41px;
+        position: relative;
+        color: white;
+        border-radius: 50%;
+        padding: 5px 10px 5px 10px;
+
+    }
+
+    .i-2::after {
+        background: #4C4E8D !important;
+    }
+
+    .sign-pg-right {
+        background: transparent !important;
+        height: 100%;
+        width: 50%;
+
+    }
+
+    .sign-pg-right a {
+        color: black;
+        text-decoration: none;
+    }
+
+    .sign-pg-right>div {
+        margin-top: 14rem;
+    }
+
+    .sign-pg-right>div>div:nth-child(1)>div:nth-child(2) p {
+        position: relative;
+        top: 3px;
+        left: 30px;
+    }
+
+    .sign-pg-right>div>div:nth-child(2) {
+        margin-top: 100px;
+    }
+
+    .txt-indicate {
+        font-weight: 600;
+        font-size: 20px;
+    }
+
+    .log {
+        width: 18px;
+        position: relative;
+        top: -10px;
+        left: 5px;
+        cursor: pointer;
+    }
+
+    .label-txt {
+        position: relative;
+        top: 12px;
+    }
+
+    input {
+        border: 2px solid #9D9D9D;
+        border-radius: 2px;
+        padding: 2px;
+        font-weight: bold;
+        padding-left: 10px;
+        padding-right: 10px;
+        width: 100%;
+    }
+
+    input::placeholder {
+        font-size: 14px !important;
+    }
+
+    .input-b {
+        width: 19.2rem !important;
+    }
+
+    .b-cont {
+        height: 183px;
+        overflow-y: scroll;
+    }
+
+
+    .customized-btn {
+        padding: 5px 10px 5px 10px;
+        background: #E6EDF9;
+        border: 2px solid #9D9D9D;
+        border-radius: 2px;
+        transition: 0.2s all;
+        font-weight: 600;
+    }
+
+    .customized-btn:hover {
+        background: #6d60f71a;
+    }
+
+
+    .active_btn {
+        background: #6d60f71a !important;
+    }
+
+    /* Verification */
+    .verify-body {
+        background-image: url("/src/img/login-back.png");
+    }
+    nav {
+        background: rgba(255, 255, 255, 0.72);
+        padding: 0;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-right: 50px;
+    }
+    nav a{
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    nav>div {
+        position: relative;
+        top: 10px;
+    }
+
+    .t-verify {
+        color: black;
+        position: relative;
+        left: 25px;
+    }
+
+    .logo img {
+        width: 90px;
+        height: 50px;
+        position: relative;
+        top: -10px;
+        left: 20px;
+    }
+
+    .logo h1 {
+        font-size: 30px;
+    }
+
+    .logo p {
+        font-size: 12px;
+        position: relative;
+        top: -10px;
+    }
+
+    .verify-title {
+        font-size: 25px;
+        position: relative;
+        top: -5px;
+        left: 20px;
+        color: rgba(0, 0, 0, 0.795);
+    }
+
+    .verification-cont{
+        margin: auto;
+        width: 700px;
+        height: 400px;
+        background: #b2c7f24b;
+        text-align: center;
+        margin-top: 5rem;
+        padding:5rem;
+        border-radius: 20px;
+        box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+    }
+    .verification-cont h3 {
+        font-weight: 500;
+        color: rgba(0, 0, 0, 0.863);
+    }
+    .verification-cont p{
+        font-weight: 500;
+        margin: 20px;
+        font-size: 15px;
+        color:#0059AC;
+    }
+    .verification-cont button {
+        padding: 10px 15px 10px 15px;
+        border-radius: 5px;
+        background: #6D60F7;
+        color: rgba(255, 255, 255, 0.959);
+        font-weight: bold;
+        border: transparent;
+        margin: 20px;
+    }
+    .timer-txt{
+        display: none;
+    }
+    .resend_cont{
+        display: none;
+    }
