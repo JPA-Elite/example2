@@ -13673,8 +13673,8 @@
                 and the clients pay how they like.
             </p>
             <p>Recurring invoices, Automated Reminders,
-                and <br> Online Payments make it easy.</p>
-                
+                and <br> Online Payments make it easy..</p>
+
             @foreach ($users as $user)
             <p>{{$user->name}}</p>
             @endforeach
