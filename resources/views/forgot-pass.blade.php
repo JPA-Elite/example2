@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Form | G-Pay</title>
+    <title>Forgot Password | G-Pay</title>
     <link rel="icon" type="image/x-icon" href="https://github.com/JPA-EliteDeveloper/images/blob/main/logo.png?raw=true">
 
     <style>
@@ -64,7 +64,7 @@
                     <li><span class="text-primary text-medium">2. </span>We'll email you a temporary code.</li>
                     <li><span class="text-primary text-medium">3. </span>Use the code to change your password on our secure website.</li>
                 </ol>
-                <form class="card mt-4" action="/gpay.com/forgot-pass-request" method="post">
+                <form class="card mt-4" action="/api/gpay.com/forgot-pass-request" method="post">
                     @csrf
                     <div class="card-body">
                         <div class="form-group">
