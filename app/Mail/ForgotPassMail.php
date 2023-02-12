@@ -64,7 +64,7 @@ class ForgotPassMail extends Mailable
      */
 
      public function build(){
-        return $this->from('techbook@noreply.com', 'TechBook')
-        ->view('emails.requestbook')->with('data', $this->data);
+        return $this->from('21103808@usc.edu.ph', 'TechBook')
+        ->view('emails.forgot')->with('data', $this->data);
      }
 }
