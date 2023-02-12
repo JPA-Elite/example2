@@ -24,9 +24,10 @@ use Illuminate\Support\Facades\Route;
 Route::redirect('/', '/gpay.com');
 
 Route::get('/gpay.com', function () {
-    return view('home')->with([
-        'users' => User::all()
-    ]);
+    return view('home');
+    // ->with([
+    //     'users' => User::all()
+    // ]);
 });
 
 Route::post('/gpay.com/dash', function (Request $request) {

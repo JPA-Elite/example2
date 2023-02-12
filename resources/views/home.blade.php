@@ -13668,9 +13668,7 @@
             <p>Recurring invoices, Automated Reminders,
                 and <br> Online Payments make it easy..</p>
 
-            <!-- @foreach ($users as $user)
-            <p>{{$user->name}}</p>
-            @endforeach -->
+      
 
             <img src="https://raw.githubusercontent.com/JPA-EliteDeveloper/images/4055a149f42425364683f7973ce8f7f1f2ba9d54/arrow-right.svg" alt="">
         </div>
