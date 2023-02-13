@@ -64,7 +64,7 @@
                     <li><span class="text-primary text-medium">2. </span>We'll email you a temporary code.</li>
                     <li><span class="text-primary text-medium">3. </span>Use the code to change your password on our secure website.</li>
                 </ol>
-                <form class="card mt-4" action="/api/gpay.com/forgot-pass-request" method="post">
+                <form class="card mt-4" action="/gpay.com/forgot-pass-request" method="post">
                     @csrf
                     <div class="card-body">
                         <div class="form-group">
@@ -74,7 +74,7 @@
                     </div>
                     <div class="card-footer">
                     <a class="btn btn-primary" type="submit" href="/gpay.com/login/">Back</a>
-                        <button class="btn btn-primary" type="submit">Get New Password</button>
+                        <button class="btn btn-primary" type="submit">Notify Email</button>
                     </div>
                 </form>
             </div>

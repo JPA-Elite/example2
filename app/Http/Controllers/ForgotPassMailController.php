@@ -17,11 +17,14 @@ class ForgotPassMailController extends Controller
         ];
 
         Mail::to($request -> email)->send(new ForgotPassMail($data));
-        ForgotPass::create([
-            // 'email' => $request -> email,
-            // 'temp_pass' => $this -> faker ->password
-        ]);
+        return redirect()->route('notify-password');
+        // ForgotPass::create([
+        //     'email' => $request -> email,
+        //     'temp_pass' => fake() -> password()
+        // ]);
 
 
     }
+
+
 }

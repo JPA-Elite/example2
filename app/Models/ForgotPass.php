@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ForgotPass extends Model
 {
-    private $fillable = [
+    protected $fillable = [
         'email',
         'temp_pass'
     ];
