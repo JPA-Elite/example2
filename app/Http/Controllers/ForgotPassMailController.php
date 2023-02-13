@@ -10,21 +10,22 @@ use Illuminate\Support\Facades\Mail;
 
 class ForgotPassMailController extends Controller
 {
-    public function sendForgotPassMail(Request $request){
+    public function sendForgotPassMail(Request $request)
+    {
 
-        $data = [
-            'email' => $request->email,
-        ];
+        if ($request->isMethod('post')) {
 
-        Mail::to($request -> email)->send(new ForgotPassMail($data));
-        return redirect()->route('notify-password');
-        // ForgotPass::create([
-        //     'email' => $request -> email,
-        //     'temp_pass' => fake() -> password()
-        // ]);
-
-
+            $data = [
+                'email' => $request->email,
+            ];
+            Mail::to($request->email)->send(new ForgotPassMail($data));
+            return view('notify-password')->with('email', $request->email);
+            // ForgotPass::create([
+            //     'email' => $request -> email,
+            //     'temp_pass' => fake() -> password()
+            // ]);
+        } else {
+            return redirect()->route('login');
+        }
     }
-
-
 }

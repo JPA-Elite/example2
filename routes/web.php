@@ -56,15 +56,15 @@ Route::post('/gpay.com/dash', function (Request $request) {
 Route::redirect('/', '/gpay.com');
 Route::view('/gpay.com/forgot-password/', 'forgot-pass');
 Route::view('/gpay.com/forgot-pass-show/', 'emails.forgot');
-Route::get('/gpay.com/create-new-pass/{email}',[CreateNewPasswordController::class, 'create_new_pass']);
-Route::view('/gpay.com/notify-password/','notify-password')->name('notify-password');
-Route::post('/gpay.com/forgot-pass-request',[ForgotPassMailController::class, 'sendForgotPassMail']);
-Route::post('/gpay.com/set-password', function(Request $request){
-   $user = User::where('email', $request -> email);
-   $user->update(['password'=> Hash::make($request -> pass)]);
+Route::get('/gpay.com/create-new-pass/{email}', [CreateNewPasswordController::class, 'create_new_pass']);
+Route::view('/gpay.com/notify-password/', 'notify-password')->name('notify-password');
+Route::any('/gpay.com/forgot-pass-request', [ForgotPassMailController::class, 'sendForgotPassMail']);
+Route::post('/gpay.com/set-password', function (Request $request) {
+    $user = User::where('email', $request->email);
+    $user->update(['password' => Hash::make($request->pass)]);
 
-   return redirect()->route('login');
-//    ->with('password_notification', 'Password successfully updated!');
+    return redirect()->route('login');
+    //    ->with('password_notification', 'Password successfully updated!');
 });
 
 

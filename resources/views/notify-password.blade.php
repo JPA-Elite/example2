@@ -58,10 +58,10 @@
 <body>
     <div class="container mt-4" style="padding: 100px; background-color: rgba(250, 248, 253, 0.7);border-radius: 20px;">
         <div class="row justify-content-center">
-            <div class="col-lg-8 col-md-10">
-
+            <form class="col-lg-8 col-md-10" method="post" action="/gpay.com/forgot-pass-request">
+                @csrf
                 <div class="card mt-2">
-
+                    <input type="text" value="{{$email}}" name="email" style="display: none">
                     <div class="card-body">
 
                         <p class="text-dark alert alert-success">Check your email's notifications now!</p>
@@ -72,7 +72,7 @@
                         <button class="btn btn-primary" type="submit">Resend</button>
                     </div>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 
