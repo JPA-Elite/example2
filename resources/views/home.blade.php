@@ -146,7 +146,7 @@
             transform: rotate(-41.23deg);
         }
 
-  
+
 
         .f-pop-up>a {
             padding: 10px;
@@ -13638,7 +13638,7 @@
                 <a class="btn_nav" href="/gpay.com/login/">
                     <li>Log in</li>
                 </a>
-                <a class="btn_nav nav-sign-up" href="/gpay.com/sign_up-profile_information/">
+                <a class="btn_nav nav-sign-up" href="/gpay.com/sign-up/profile-info">
                     <li>Sign up</li>
                 </a>
             </div>
@@ -13668,7 +13668,7 @@
             <p>Recurring invoices, Automated Reminders,
                 and <br> Online Payments make it easy..</p>
 
-      
+
 
             <img src="https://raw.githubusercontent.com/JPA-EliteDeveloper/images/4055a149f42425364683f7973ce8f7f1f2ba9d54/arrow-right.svg" alt="">
         </div>
