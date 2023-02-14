@@ -15,7 +15,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return User::all();   
+        return User::all();
     }
 
     /**
@@ -39,13 +39,18 @@ class UserController extends Controller
         $validated = $request->validate([
             'name' => 'required',
             'email' => 'required',
-            'password' => 'required'
+            'password' => 'required',
+            'phone' => 'required',
+            'location' => 'required'
         ]);
 
         return User::create([
             'name' => $validated['name'],
             'email' => $validated['email'],
-            'password' => Hash::make($validated['password'])
+            'password' => Hash::make($validated['password']),
+            'phone' => $validated['phone'],
+            'location' => $validated['location'],
+            'verified' => 'pending'
         ]);
     }
 
@@ -83,7 +88,10 @@ class UserController extends Controller
         return User::find($id)->update([
             'name' => $request -> name,
             'email' => $request -> email,
-            'password' => Hash::make($request -> password)
+            'password' => Hash::make($request -> password),
+            'phone' => $request -> phone,
+            'location' => $request -> location,
+         
         ]);
     }
 

@@ -20,10 +20,7 @@ class ForgotPassMailController extends Controller
             ];
             Mail::to($request->email)->send(new ForgotPassMail($data));
             return view('notify-password')->with('email', $request->email);
-            // ForgotPass::create([
-            //     'email' => $request -> email,
-            //     'temp_pass' => fake() -> password()
-            // ]);
+        
         } else {
             return redirect()->route('login');
         }
