@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 use App\Models\UserBusiness;
+use Laravel\Socialite\Facades\Socialite;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,24 +34,28 @@ Route::get('/gpay.com', function () {
     // ]);
 });
 
-Route::post('/gpay.com/dash', function (Request $request) {
-    $user = User::where('email', $request->email)->first();
+Route::any('/gpay.com/dash', function (Request $request) {
+    if ($request->isMethod('post')) {
+        $user = User::where('email', $request->email)->first();
 
-    if ($user && Hash::check($request->password, $user->password)) {
-        return response(
-            [
-                'message' => "successfully login",
-                'email' => $request->email,
-                'password' => $request->password
-            ]
-        );
+        if ($user && Hash::check($request->password, $user->password)) {
+            return response(
+                [
+                    'message' => "successfully login",
+                    'email' => $request->email,
+                    'password' => $request->password
+                ]
+            );
+        } else {
+            return Redirect::back()->withErrors(
+                [
+                    'login' => 'Invalid credentials!',
+                    'email' => $request->email
+                ]
+            );
+        }
     } else {
-        return Redirect::back()->withErrors(
-            [
-                'login' => 'Invalid credentials!',
-                'email' => $request->email
-            ]
-        );
+        return redirect()->route('login');
     }
 });
 
@@ -79,7 +84,9 @@ Route::any('/gpay.com/sign-up/about-business', function (Request $request) {
     if ($request->isMethod('post')) {
         return view('sign_up_about_business');
     } else {
-        return redirect()->route('login');
+        // return redirect()->route('login');
+
+
     }
 });
 
@@ -124,3 +131,17 @@ Route::view('/gpay.com/demo/', 'demo');
 
 
 Route::resource('user', UserController::class);
+
+//dashboard admnistrator
+Route::view('/gpay.com/dashboard/', 'dashboard.dash');
+
+//sign in with google
+Route::get('/gpay.com/login/auth/redirect', function () {
+    return Socialite::driver('google')->redirect();
+});
+
+Route::get('/gpay.com/login/auth/callback', function () {
+    $user = Socialite::driver('google')->user();
+
+    return view('') -> with('token', $user -> token);
+});

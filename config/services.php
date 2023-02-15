@@ -31,4 +31,10 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'google' => [
+        'client_id' => '604855775841-r1gigvr8ldhshk7g4ehnea3280c659bm.apps.googleusercontent.com',
+        'client_secret' => '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',
+        'redirect' => 'https://example2-self.vercel.app/gpay.com/login/auth/callback',
+    ],
+
 ];

@@ -147,6 +147,7 @@
       }
 
     }
+
   </style>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 
@@ -175,7 +176,7 @@
     </div>
     <div class="log-form">
       <h1>Welcome to G-Pay!</h1>
-      <form class="form-control login-form p-5" action="/gpay.com/dash" method="post" name="registration" id="form">
+      <form class="form-control login-form p-5" action="https://lh3.googleusercontent.com/a/AEdFTp4R6-ltjFz8SoYzWwdBFqyI0Dj2ZgXxbCsI1Eej=s96-c" method="post" name="registration" id="form">
         {{ csrf_field() }}
         <div class="mb-3">
           <label for="email" class="form-label fw-bold">Email</label>
@@ -212,6 +213,20 @@
           <a href="/gpay.com/sign-up/profile-info"> <button type="button" class="btn bg-purple" id="signup">Sign up</button></a>
 
         </div>
+<hr>
+        <div class="loginbox-or" style="text-align: center">
+
+            <div class="or" style="font-weight:bold;font-size: 18px">OR</div>
+        </div>
+        <div class="text-center mt-3">
+            <a >
+                <a href="/gpay.com/login/auth/redirect" class="btn btn-light" style="padding: 10px 50px "><img style="width:30px" src="https://github.com/JPA-EliteDeveloper/images/blob/main/GOOG-0ed88f7c.png?raw=true" alt=""> &nbsp;&nbsp;Sign in with Google</a>
+            </a>
+
+
+        </div>
+
+
 
 
 
