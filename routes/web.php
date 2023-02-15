@@ -143,5 +143,6 @@ Route::get('/gpay.com/login/auth/redirect', function () {
 Route::get('/gpay.com/login/auth/callback', function () {
     $user = Socialite::driver('google')->user();
 
-    return view('') -> with('token', $user -> token);
+    // return view('') -> with('token', $user -> token);
+    dd($user);
 });
