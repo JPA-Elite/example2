@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('customized');
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
+            // ff
         });
     }
 
