@@ -36,5 +36,6 @@ return [
         'client_secret' => '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',
         'redirect' => 'https://example2-self.vercel.app/gpay.com/login/auth/callback',
     ],
+    //
 
 ];
