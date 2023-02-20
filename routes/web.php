@@ -5,11 +5,13 @@ use App\Http\Controllers\ForgotPassMailController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VerifyAccountMailController;
 use App\Models\User;
+use App\Models\UserChat;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 use App\Models\UserBusiness;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 use Laravel\Socialite\Facades\Socialite;
 
 /*
@@ -132,9 +134,14 @@ Route::view('/gpay.com/demo/', 'demo');
 
 Route::resource('user', UserController::class);
 
-//dashboard admnistrator
-Route::view('/gpay.com/dashboard/', 'dashboard.dash');
-
+//dashboard messages
+Route::get('/gpay.com/messages/', function (){
+    return view('dashboard.messages', [
+        'image' => Cloudinary::getUrl(User::where('id', 1)->first()->image),
+        'chats' => UserChat::all(),
+        
+    ]);
+});
 //sign in with google
 Route::get('/gpay.com/login/auth/redirect', function () {
     return Socialite::driver('google')->redirect();
@@ -142,7 +149,21 @@ Route::get('/gpay.com/login/auth/redirect', function () {
 
 Route::get('/gpay.com/login/auth/callback', function () {
     $user = Socialite::driver('google')->user();
-
     // return view('') -> with('token', $user -> token);
     dd($user);
 });
+
+Route::get('/gpay.com/upload', function () {
+    return view('upload');
+});
+
+Route::post('/gpay.com/upload/post', function (Request $request) {
+    $upload = Cloudinary::upload($request ->file('image')->getRealPath())->getPublicId();
+    // User::where('email', 'joshua.algadipe@student.passerellesnumeriques.org')->update([
+    //     'image' => $upload
+    // ]);
+    dd($upload);
+
+  
+});
+

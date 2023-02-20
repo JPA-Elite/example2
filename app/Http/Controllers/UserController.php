@@ -91,6 +91,7 @@ class UserController extends Controller
             'password' => Hash::make($request -> password),
             'phone' => $request -> phone,
             'location' => $request -> location,
+            
          
         ]);
     }

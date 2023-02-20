@@ -10,45 +10,45 @@
         href="https://github.com/JPA-EliteDeveloper/images/blob/main/logo.png?raw=true">
 
     <style>
-        body {
-            background-image: url("https://github.com/JPA-EliteDeveloper/images/blob/main/login-back.png?raw=true");
-            background-size: cover;
-            background-repeat: no-repeat;
-        }
+    body {
+        background-image: url("https://github.com/JPA-EliteDeveloper/images/blob/main/login-back.png?raw=true");
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
 
-        .form-control:not(textarea) {
-            height: 44px;
-        }
+    .form-control:not(textarea) {
+        height: 44px;
+    }
 
-        .form-control {
-            padding: 0 18px 3px;
-            border: 1px solid #dbe2e8;
-            border-radius: 22px;
-            background-color: #fff;
-            color: #606975;
-            font-family: "Maven Pro", Helvetica, Arial, sans-serif;
-            font-size: 14px;
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            appearance: none;
-        }
+    .form-control {
+        padding: 0 18px 3px;
+        border: 1px solid #dbe2e8;
+        border-radius: 22px;
+        background-color: #fff;
+        color: #606975;
+        font-family: "Maven Pro", Helvetica, Arial, sans-serif;
+        font-size: 14px;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+    }
 
-        .form-group label {
-            margin-bottom: 8px;
-            padding-left: 18px;
-            font-size: 13px;
-            font-weight: 500;
-            cursor: pointer;
-        }
+    .form-group label {
+        margin-bottom: 8px;
+        padding-left: 18px;
+        font-size: 13px;
+        font-weight: 500;
+        cursor: pointer;
+    }
 
 
-        .form-text {
-            padding-left: 18px;
-        }
+    .form-text {
+        padding-left: 18px;
+    }
 
-        .text-muted {
-            color: #9da9b9 !important;
-        }
+    .text-muted {
+        color: #9da9b9 !important;
+    }
     </style>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
@@ -74,7 +74,8 @@
                     </div>
 
                     <div class="card-footer">
-                        <small class="text-muted">If email doesn't send, please try again by clicking the button below! </small> <br><br>
+                        <small class="text-muted">If email doesn't send, please try again by clicking the button below!
+                        </small> <br><br>
                         <button class="btn btn-primary" type="submit">Resend</button>
                     </div>
                 </div>

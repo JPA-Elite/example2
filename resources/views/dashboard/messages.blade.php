@@ -1,16 +1,22 @@
 ﻿<!------ Include the above in your HEAD tag ---------->
-
+<?php
+use App\Models\User;
+?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Chat</title>
+	<link rel="icon" type="image/x-icon" href="https://github.com/JPA-EliteDeveloper/images/blob/main/logo.png?raw=true">
 	<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 	<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-	<link rel="icon" type="image/x-icon" href="https://github.com/JPA-EliteDeveloper/images/blob/main/logo.png?raw=true">
+
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.js"></script>
@@ -415,13 +421,13 @@
 
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active">
+				<li class="nav-item">
 					<a class="nav-link" href="#">
 						<i class="fa fa-home"></i>
 						<span class="sr-only">(current)</span>
 					</a>
 				</li>
-				<li class="nav-item">
+				<li class="nav-item active">
 					<a class="nav-link" href="#">
 						<i class="fa fa-envelope-o">
 							<span class="badge badge-danger">11</span>
@@ -478,11 +484,12 @@
 
 		</div>
 		<div id="profile">
-			<a class=""  href="#" id="profile">
+			<a class="" href="#" id="profile">
 				<!-- <i class="fa fa-envelope-o">
             <span class="badge badge-primary">11</span>
           </i> -->
-				<img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg" alt="" style="width: 40px;border-radius: 50%;">
+
+				<img src="{{$image}}" alt="" style="width: 40px;border-radius: 50%;">
 			</a>
 			<div id="profile_pop" style="position: absolute;right:0px;top:75px;z-index: 1;background-color: white;">
 				<a class="dropdown-item" href="#">Profile</a>
@@ -510,6 +517,13 @@
 					</div>
 					<div class="card-body contacts_body">
 						<ui class="contacts">
+						<?php
+
+
+
+						$total = 1;
+						?>
+						@foreach ($chats as $chat)
 							<li class="active">
 								<div class="d-flex bd-highlight">
 									<div class="img_cont">
@@ -517,59 +531,26 @@
 										<span class="online_icon"></span>
 									</div>
 									<div class="user_info">
-										<span>Khalid</span>
-										<p>Kalid is online</p>
+										<span>
+											<!-- 
+											    echo User::where('id',$chat[$total]->second_user)->first()->name;
+											?>
+										</span> -->
+										@if($chat->first_user != 1)
+										<p>{{User::where('id',$chat->first_user)->first()->name }}</p>
+										@endif
+
+										@if($chat->first_user == 1)
+										<p>{{User::where('id',$chat->second_user)->first()->name }}</p>
+										@endif
+									
 									</div>
 								</div>
 							</li>
-							<li>
-								<div class="d-flex bd-highlight">
-									<div class="img_cont">
-										<img src="https://2.bp.blogspot.com/-8ytYF7cfPkQ/WkPe1-rtrcI/AAAAAAAAGqU/FGfTDVgkcIwmOTtjLka51vineFBExJuSACLcBGAs/s320/31.jpg" class="rounded-circle user_img">
-										<span class="online_icon offline"></span>
-									</div>
-									<div class="user_info">
-										<span>Taherah Big</span>
-										<p>Taherah left 7 mins ago</p>
-									</div>
-								</div>
-							</li>
-							<li>
-								<div class="d-flex bd-highlight">
-									<div class="img_cont">
-										<img src="https://i.pinimg.com/originals/ac/b9/90/acb990190ca1ddbb9b20db303375bb58.jpg" class="rounded-circle user_img">
-										<span class="online_icon"></span>
-									</div>
-									<div class="user_info">
-										<span>Sami Rafi</span>
-										<p>Sami is online</p>
-									</div>
-								</div>
-							</li>
-							<li>
-								<div class="d-flex bd-highlight">
-									<div class="img_cont">
-										<img src="http://profilepicturesdp.com/wp-content/uploads/2018/07/sweet-girl-profile-pictures-9.jpg" class="rounded-circle user_img">
-										<span class="online_icon offline"></span>
-									</div>
-									<div class="user_info">
-										<span>Nargis Hawa</span>
-										<p>Nargis left 30 mins ago</p>
-									</div>
-								</div>
-							</li>
-							<li>
-								<div class="d-flex bd-highlight">
-									<div class="img_cont">
-										<img src="https://static.turbosquid.com/Preview/001214/650/2V/boy-cartoon-3D-model_D.jpg" class="rounded-circle user_img">
-										<span class="online_icon offline"></span>
-									</div>
-									<div class="user_info">
-										<span>Rashid Samim</span>
-										<p>Rashid left 50 mins ago</p>
-									</div>
-								</div>
-							</li>
+							<?php
+							$total++
+							?>
+						@endforeach
 						</ui>
 					</div>
 					<div class="card-footer"></div>
