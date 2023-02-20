@@ -34,7 +34,7 @@ return [
     'google' => [
         'client_id' => env('GOOGLE_CLIENT_ID'),
         'client_secret' => env('GOOGLE_CLIENT_SECRET'),
-        'redirect' => '/gpay.com/login/auth/callback',
+        'redirect' => 'https://example2-self.vercel.app/gpay.com/login/auth/callback',
     ],
     //
 
