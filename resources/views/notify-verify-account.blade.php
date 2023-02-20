@@ -61,7 +61,7 @@
             <form class="col-lg-8 col-md-10" method="post" action="/gpay.com/verify-account/">
                 @csrf
                 <div class="card mt-2">
-                    <input type="text" value="{{$_COOKIE["email"]}}" name="email" style="display: none">
+                    <input type="text" value="{{$_COOKIE['email']}}" name="email" style="display: none">
                     <div class="card-body">
 
                         <p class="text-dark alert alert-warning">Check your email while verifying your account!</p>

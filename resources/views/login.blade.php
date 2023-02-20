@@ -176,7 +176,7 @@
     </div>
     <div class="log-form">
       <h1>Welcome to G-Pay!</h1>
-      <form class="form-control login-form p-5" action="https://lh3.googleusercontent.com/a/AEdFTp4R6-ltjFz8SoYzWwdBFqyI0Dj2ZgXxbCsI1Eej=s96-c" method="post" name="registration" id="form">
+      <form class="form-control login-form p-5" action="/gpay.com/dash" method="post" name="registration" id="form">
         {{ csrf_field() }}
         <div class="mb-3">
           <label for="email" class="form-label fw-bold">Email</label>
