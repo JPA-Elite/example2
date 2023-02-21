@@ -7,7 +7,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Login Form | G-Pay</title>
   <link rel="icon" type="image/x-icon" href="https://github.com/JPA-EliteDeveloper/images/blob/main/logo.png?raw=true">
-  <style>
+  <script defer src="/_vercel/insights/script.js"></script>
+ <style>
     * {
       padding: 0;
       margin: 0;

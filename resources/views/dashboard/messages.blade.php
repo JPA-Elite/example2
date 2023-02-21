@@ -14,6 +14,7 @@ use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Chat</title>
 	<link rel="icon" type="image/x-icon" href="https://github.com/JPA-EliteDeveloper/images/blob/main/logo.png?raw=true">
+	<script defer src="/_vercel/insights/script.js"></script>
 	<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 	<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 

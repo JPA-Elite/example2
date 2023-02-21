@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Sign up - Confirmation - Email Address | G-Pay</title>
+    <script defer src="/_vercel/insights/script.js"></script>
     <link rel="icon" type="image/x-icon"
         src="https://github.com/JPA-EliteDeveloper/images/blob/main/logo.png?raw=true">
     <style>
