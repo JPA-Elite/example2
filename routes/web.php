@@ -263,7 +263,14 @@ Route::get('/gpay.com/upload', function () {
 });
 
 Route::get('/gpay.com/upload/post', function () {
-    $upload = Cloudinary::upload('https://lh3.googleusercontent.com/a/AEdFTp7zdOGxfAmTJIzWB1NSgkM01fVVmCiF4cBRtIqx=s96-c')->getPublicId();
+    $upload = Cloudinary::upload('https://github.com/JPA-EliteDeveloper/images/blob/main/2.jpg?raw=true',
+    [
+        "responsive_breakpoints" => [
+            "create_derived" => true, 
+            "bytes_step" => 15000, 
+            "min_width" => 200, 
+            "max_width" => 1000 ]]
+    )->getPublicId();
     // User::where('email', 'joshua.algadipe@student.passerellesnumeriques.org')->update([
     //     'image' => $upload
     // ]);

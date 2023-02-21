@@ -16,7 +16,7 @@ use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 	<link rel="icon" type="image/x-icon" href="https://github.com/JPA-EliteDeveloper/images/blob/main/logo.png?raw=true">
 	<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 	<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 
@@ -517,7 +517,7 @@ use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 				<div class="card mb-sm-3 mb-md-0 contacts_card">
 					<div class="card-header">
 						<div class="input-group">
-							<input type="text" placeholder="Search..." name="" class="form-control search">
+							<input type="text" placeholder="Search..." name="" class="form-control search" id="search">
 							<div class="input-group-prepend">
 								<span class="input-group-text search_btn"><i class="fas fa-search"></i></span>
 							</div>
@@ -536,7 +536,7 @@ use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 							@if($message_id != 0)
 							@foreach ($chats as $chat)
 							@if ($message_id == $chat )
-							<a href="/gpay.com/messages/{{$chat}}">
+							<a href="/gpay.com/messages/{{$chat}}" class="chat_list">
 								<li class="active chat_box" style="cursor:pointer">
 									<div class="d-flex bd-highlight">
 										<div class="img_cont">
@@ -561,7 +561,7 @@ use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
 							@endif
 							@if($message_id != $chat)
-							<a href="/gpay.com/messages/{{$chat}}">
+							<a href="/gpay.com/messages/{{$chat}}" class="chat_list">
 								<li style="cursor:pointer" class="chat_box">
 									<div class="d-flex bd-highlight">
 										<div class="img_cont">
@@ -590,7 +590,74 @@ use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 							@endif
 						</ui>
 					</div>
-					<div class="card-footer"></div>
+					<div class="card-footer text-center">
+						<!-- <button class="btn btn-primary">Search New</button> -->
+						<!-- Button trigger modal -->
+						<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+							Find New Chat
+						</button>
+
+						<!-- Modal -->
+						<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+							<div class="modal-dialog">
+								<div class="modal-content bg-dark">
+									<div class="modal-header">
+										<div class="card-header">
+											<div class="input-group">
+												<input type="text" placeholder="Search..." name="" class="form-control search" id="search2">
+												<div class="input-group-prepend">
+													<span class="input-group-text search_btn"><i class="fas fa-search"></i></span>
+												</div>
+											</div>
+										</div>
+										<!-- <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1> -->
+										<!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+									</div>
+
+									<div class="modal-body bg-secondary">
+										@if($message_id != 0)
+										
+										@foreach ($chats as $chat)
+										
+										<a href="/gpay.com/messages/{{$chat}}" class="chat_list2">
+											<li class="chat_box" style="cursor:pointer">
+												<div class="d-flex bd-highlight">
+													<div class="img_cont">
+														<img src="{{Cloudinary::getUrl(User::where('id',$chat)->first()->image)}}" class="rounded-circle user_img">
+														<span class="online_icon"></span>
+													</div>
+													<div class="user_info">
+														<span>
+															{{User::where('id',$chat)->first()->name;}}
+														</span>
+
+														<p>{{User::where('id',$chat)->first()->created_at }}</p>
+
+
+
+
+													</div>
+												</div>
+											</li>
+										</a>
+
+
+									
+									
+										<?php
+										$total++
+										?>
+										@endforeach
+										@endif
+									</div>
+									<div class="modal-footer">
+										<!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+										<!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 			<div class="col-md-8 chat">
@@ -696,8 +763,22 @@ use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 			});
 		});
 	</script> -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 	<script>
 		$(document).ready(function() {
+			$("#search").on("keyup", function() {
+				var value = $(this).val().toLowerCase();
+				$(".contacts_body .contacts .chat_list").filter(function() {
+					$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+				});
+			});
+			$("#search2").on("keyup", function() {
+				var value = $(this).val().toLowerCase();
+				$(".chat_list2").filter(function() {
+					$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+				});
+			});
+
 			$('#action_menu_btn').click(function() {
 				$('.action_menu').toggle();
 
