@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Homepage | G-Pay</title>
     <link rel="icon" type="image/x-icon" href="https://github.com/JPA-EliteDeveloper/images/blob/main/logo.png?raw=true">
-    <style>
+    <script defer src="/_vercel/insights/script.js"></script>
+   <style>
         :root {
             --background: #BFD7ED;
             --nav-background: rgb(255, 255, 255) !important;
