@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 use App\Http\Controllers\CreateNewPasswordController;
 use App\Http\Controllers\ForgotPassMailController;
@@ -30,24 +31,27 @@ use Laravel\Socialite\Facades\Socialite;
 Route::redirect('/', '/gpay.com');
 
 Route::get('/gpay.com', function () {
+    session_unset();
     return view('home');
-    // ->with([
-    //     'users' => User::all()
-    // ]);
 });
 
 Route::any('/gpay.com/dash', function (Request $request) {
     if ($request->isMethod('post')) {
         $user = User::where('email', $request->email)->first();
 
+
+
         if ($user && Hash::check($request->password, $user->password)) {
-            return response(
-                [
-                    'message' => "successfully login",
-                    'email' => $request->email,
-                    'password' => $request->password
-                ]
-            );
+
+            // return response(
+            //     [
+            //         'message' => "successfully login",
+            //         'email' => $request->email,
+            //         'password' => $request->password
+            //     ]
+            // );
+            $_SESSION["user_id"] =  $user->id;
+            return redirect()->route('message');
         } else {
             return Redirect::back()->withErrors(
                 [
@@ -135,11 +139,70 @@ Route::view('/gpay.com/demo/', 'demo');
 Route::resource('user', UserController::class);
 
 //dashboard messages
-Route::get('/gpay.com/messages/', function (){
+Route::get('/gpay.com/messages/', function () {
+    $user_id = null;
+    try {
+        $user_id_temp = $_SESSION["user_id"];
+        $user_id = $user_id_temp;
+    } catch (Exception $e) {
+        return redirect()->route('login');
+    }
+    $array = array();
+    $data = UserChat::all();
+    foreach ($data as $datum) {
+        if ($datum->first_user == $user_id && $datum->second_user != $user_id) {
+            array_push($array, $datum->second_user);
+        } else if ($datum->first_user != $user_id && $datum->second_user == $user_id) {
+            array_push($array, $datum->first_user);
+        }
+    }
+
+    $message_id = null;
+    if (count(array_unique($array)) == 0) {
+        $message_id = 0;
+    } else {
+        $message_id  = array_unique($array)[0];
+    }
+
     return view('dashboard.messages', [
-        'image' => Cloudinary::getUrl(User::where('id', 1)->first()->image),
-        'chats' => UserChat::all(),
-        
+        'image' => Cloudinary::getUrl(User::where('id', $user_id)->first()->image),
+        'chats' => array_unique($array),
+        'message_id' => $message_id,
+        'user_id' => $user_id
+    ]);
+})->name('message');
+Route::get('/gpay.com/messages/{id}', function ($id) {
+    $user_id = null;
+    try {
+        $user_id_temp = $_SESSION["user_id"];
+        $user_id = $user_id_temp;
+    } catch (Exception $e) {
+        return redirect()->route('login');
+    }
+
+    $array = array();
+    $data = UserChat::all();
+    foreach ($data as $datum) {
+        if ($datum->first_user == $user_id) {
+            array_push($array, $datum->second_user);
+        } else {
+            array_push($array, $datum->first_user);
+        }
+    }
+    return view('dashboard.messages', [
+        'image' => Cloudinary::getUrl(User::where('id', $user_id)->first()->image),
+        'chats' => array_unique($array),
+        'message_id' => $id,
+        'user_id' => $user_id
+
+    ]);
+});
+Route::post('/gpay.com/messages/send/request', function (Request $request) {
+    //    dd($request->all());
+    UserChat::create([
+        'first_user' => $request->first_user,
+        'second_user' => $request->second_user,
+        'message' => $request->message
     ]);
 });
 //sign in with google
@@ -149,21 +212,60 @@ Route::get('/gpay.com/login/auth/redirect', function () {
 
 Route::get('/gpay.com/login/auth/callback', function () {
     $user = Socialite::driver('google')->user();
-    // return view('') -> with('token', $user -> token);
-    dd($user);
+    $user_id = null;
+    if (User::where('email', $user->getEmail())->first() == '') {
+        // "no account yet";
+        $upload = Cloudinary::upload($user->getAvatar())->getPublicId();
+        User::create([
+            'name' => $user->getName(),
+            'email' =>  $user->getEmail(),
+            'password' => '',
+            'phone' => '',
+            'location' => '',
+            'image' =>  $upload,
+            'verified' => 'done'
+        ]);
+
+        $user_id =  User::where('email',  $user->getEmail())->first()->id;
+
+        UserBusiness::create([
+            'company_name' => '',
+            'company_do' =>  '',
+            'describe_business' => '',
+            'currency' =>  '',
+            'estimate_revenue' =>  '',
+            'long_service' =>  '',
+            'current_bill' =>  '',
+            'customized' =>  '',
+            'user_id' => $user_id
+        ]);
+    } else {
+        // "has an account already";
+        $user_id =  User::where('email',  $user->getEmail())->first()->id;
+        $user_image_id =  User::where('email',  $user->getEmail())->first()->image;
+        Cloudinary::destroy($user_image_id);
+        $upload = Cloudinary::upload($user->getAvatar())->getPublicId();
+
+        User::where('id', $user_id)->update([
+            'name' => $user->getName(),
+            'image' => $upload
+        ]);
+    }
+
+    $_SESSION["user_id"] = $user_id;
+    return redirect()->route('message');
+
+    // dd($user);
 });
 
 Route::get('/gpay.com/upload', function () {
     return view('upload');
 });
 
-Route::post('/gpay.com/upload/post', function (Request $request) {
-    $upload = Cloudinary::upload($request ->file('image')->getRealPath())->getPublicId();
+Route::get('/gpay.com/upload/post', function () {
+    $upload = Cloudinary::upload('https://lh3.googleusercontent.com/a/AEdFTp7zdOGxfAmTJIzWB1NSgkM01fVVmCiF4cBRtIqx=s96-c')->getPublicId();
     // User::where('email', 'joshua.algadipe@student.passerellesnumeriques.org')->update([
     //     'image' => $upload
     // ]);
     dd($upload);
-
-  
 });
-

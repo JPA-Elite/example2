@@ -13481,7 +13481,7 @@
 <body class="body">
     <nav>
         <div class="d-flex align-items-end gap-5">
-            <a href="/gpay.com/homepage/" class="text-decoration-none">
+            <a href="/gpay.com/" class="text-decoration-none">
                 <div class="logo d-grid gap-2">
                     <div class="d-flex">
                         <img src="https://github.com/JPA-EliteDeveloper/images/blob/main/logo.png?raw=true" alt="logo">
