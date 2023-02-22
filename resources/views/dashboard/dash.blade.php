@@ -1,4 +1,4 @@
-﻿<!------ Include the above in your HEAD tag ---------->
+<!------ Include the above in your HEAD tag ---------->
 <?php
 
 use App\Models\User;
@@ -12,7 +12,7 @@ use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Chat</title>
+	<title>Dashboard</title>
 	<link rel="icon" type="image/x-icon" href="https://github.com/JPA-EliteDeveloper/images/blob/main/logo.png?raw=true">
 	<script defer src="/_vercel/insights/script.js"></script>
 	<link href="{{asset('css/4111.bootstrap.min.css')}}" rel="stylesheet" id="bootstrap-css">
@@ -430,16 +430,16 @@ use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item">
+				<li class="nav-item active">
 					<a class="nav-link" href="/gpay.com/dashboard/">
 						<i class="fa fa-home"></i>
 						<span class="sr-only">(current)</span>
 					</a>
 				</li>
-				<li class="nav-item active">
+				<li class="nav-item">
 					<a class="nav-link" href="/gpay.com/messages/">
 						<i class="fa fa-envelope-o">
-							<span class="badge badge-danger">{{count($chats)}}</span>
+							<span class="badge badge-danger"></span>
 						</i>
 
 					</a>
@@ -454,9 +454,7 @@ use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 				</li>
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						<!-- <i class="fa fa-envelope-o">
-            <span class="badge badge-primary">11</span>
-          </i> -->
+		
 						More
 					</a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -510,261 +508,8 @@ use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 		</div>
 
 	</nav>
-	<br><br>
-
-	<div class="">
-		<div class="row justify-content-center h-100">
-			<div class="col-md-4 col-xl-3 chat">
-				<div class="card mb-sm-3 mb-md-0 contacts_card">
-					<div class="card-header">
-						<div class="input-group">
-							<input type="text" placeholder="Search..." name="" class="form-control search" id="search">
-							<div class="input-group-prepend">
-								<span class="input-group-text search_btn"><i class="fas fa-search"></i></span>
-							</div>
-						</div>
-					</div>
-					<div class="card-body contacts_body">
-						<div class="contacts">
-							<?php
 
 
-
-							$total = 1;
-
-
-							?>
-							@if($message_id != 0)
-							@foreach ($chats as $chat)
-							@if ($message_id == $chat )
-							<a href="/gpay.com/messages/{{$chat}}" class="chat_list">
-								<li class="active chat_box" style="cursor:pointer">
-									<div class="d-flex bd-highlight">
-										<div class="img_cont">
-											<img src="{{Cloudinary::getUrl(User::where('id',$chat)->first()->image)}}" class="rounded-circle user_img">
-											<span class="online_icon"></span>
-										</div>
-										<div class="user_info">
-											<span>
-												{{User::where('id',$chat)->first()->name;}}
-											</span>
-
-											<p>{{User::where('id',$chat)->first()->created_at }}</p>
-
-
-
-
-										</div>
-									</div>
-								</li>
-							</a>
-
-
-							@endif
-							@if($message_id != $chat)
-							<a href="/gpay.com/messages/{{$chat}}" class="chat_list">
-								<li style="cursor:pointer" class="chat_box">
-									<div class="d-flex bd-highlight">
-										<div class="img_cont">
-											<img src="{{Cloudinary::getUrl(User::where('id',$chat)->first()->image)}}" class="rounded-circle user_img">
-											<span class="online_icon"></span>
-										</div>
-										<div class="user_info">
-											<span>
-												{{User::where('id',$chat)->first()->name;}}
-											</span>
-
-											<p>{{User::where('id',$chat)->first()->created_at }}</p>
-
-
-
-
-										</div>
-									</div>
-								</li>
-							</a>
-							@endif
-							<?php
-							$total++
-							?>
-							@endforeach
-							@endif
-						</div>
-					</div>
-					<div class="card-footer text-center">
-						<!-- <button class="btn btn-primary">Search New</button> -->
-						<!-- Button trigger modal -->
-						<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-							Find New Chat
-						</button>
-
-						<!-- Modal -->
-						<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-							<div class="modal-dialog">
-								<div class="modal-content bg-dark">
-									<div class="modal-header">
-										<div class="card-header">
-											<div class="input-group">
-												<input type="text" placeholder="Search..." name="" class="form-control search" id="search2">
-												<div class="input-group-prepend">
-													<span class="input-group-text search_btn"><i class="fas fa-search"></i></span>
-												</div>
-											</div>
-										</div>
-										<!-- <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1> -->
-										<!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
-									</div>
-
-									<div class="modal-body bg-secondary">
-										@if($message_id != 0)
-                                        <?php $users = User::all();?>
-										@foreach ($users as $user)
-                                        @if($user->id != $user_id)
-										<a href="/gpay.com/messages/{{$user->id}}" class="chat_list2">
-											<li class="chat_box" style="cursor:pointer">
-												<div class="d-flex bd-highlight">
-													<div class="img_cont">
-														<img src="{{Cloudinary::getUrl($user->image)}}" class="rounded-circle user_img">
-														<span class="online_icon"></span>
-													</div>
-													<div class="user_info">
-														<span>
-															{{$user->name;}}
-														</span>
-
-														<p>{{$user->created_at }}</p>
-
-
-
-
-													</div>
-												</div>
-											</li>
-										</a>
-                                        @endif
-
-
-
-
-										<?php
-										$total++
-										?>
-										@endforeach
-										@endif
-									</div>
-									<div class="modal-footer">
-										<!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
-										<!-- <button type="button" class="btn btn-primary">Save changes</button> -->
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-8 chat">
-				<form class="card" data-action="/gpay.com/messages/send/request" method="POST" enctype="multipart/form-data" id="form">
-					@csrf
-					<div class="card-header msg_head">
-						<div class="d-flex bd-highlight">
-							@if($message_id != 0)
-							<div class="img_cont">
-								<img src="{{Cloudinary::getUrl(User::where('id',$message_id)->first()->image)}}" class="rounded-circle user_img">
-								<span class="online_icon"></span>
-							</div>
-
-							<div class="user_info">
-
-								<span>Chat with {{User::where('id',$message_id)->first()->name;}}</span>
-								<p>Online</p>
-
-							</div>
-							<div class="video_cam">
-								<span><i class="fas fa-video"></i></span>
-								<span><i class="fas fa-phone"></i></span>
-							</div>
-							@endif
-						</div>
-						@if($message_id != 0)
-						<span id="action_menu_btn"><i class="fas fa-ellipsis-v"></i></span>
-						<div class="action_menu">
-							<ul>
-								<li><i class="fas fa-user-circle"></i> View profile</li>
-								<li><i class="fas fa-users"></i> Add to close friends</li>
-								<li><i class="fas fa-plus"></i> Add to group</li>
-								<li><i class="fas fa-ban"></i> Block</li>
-							</ul>
-						</div>
-						@endif
-					</div>
-
-					<?php
-					$user_chats = UserChat::all();
-					?>
-					<div class="card-body msg_card_body">
-						@if($message_id != 0)
-						@foreach($user_chats as $chat)
-						@if($chat->first_user == $user_id && $chat->second_user == $message_id)
-						<div class="d-flex justify-content-start mb-4 ">
-							<div class="img_cont_msg">
-								{{-- <img src="{{Cloudinary::getUrl(User::where('id',$user_id)->first()->image)}}" class="rounded-circle user_img_msg"> --}}
-							</div>
-							<div class="msg_cotainer">
-								{{$chat->message}}
-								<span class="msg_time">{{$chat->created_at}}</span>
-							</div>
-						</div>
-						@endif
-						@if($chat->first_user == $message_id && $chat->second_user == $user_id)
-						<div class="d-flex justify-content-end mb-4 ">
-							<div class="msg_cotainer_send">
-								{{$chat->message}}
-								<span class="msg_time_send">{{$chat->created_at}}</span>
-							</div>
-							<div class="img_cont_msg">
-								{{-- <img src="{{Cloudinary::getUrl(User::where('id',$message_id)->first()->image)}}" class="rounded-circle user_img_msg"> --}}
-							</div>
-						</div>
-						@endif
-						@endforeach
-						@endif
-					</div>
-					<div class="card-footer">
-						<div class="input-group">
-							<div class="input-group-append">
-								<span class="input-group-text attach_btn"><i class="fas fa-paperclip"></i></span>
-							</div>
-							<input type="text" style="display: none;" name="first_user" value="{{$user_id}}">
-							<input type="text" style="display: none;" name="second_user" value="{{$message_id}}">
-							@if($message_id != 0)
-							<textarea name="message" class="form-control type_msg" placeholder="Type your message..." required></textarea>
-
-							<div class="input-group-append send-message">
-								<button class="input-group-text send_btn" type="submit"><i class="fas fa-location-arrow"></i></button>
-							</div>
-							@endif
-							@if($message_id == 0)
-							<textarea name="message" class="form-control type_msg" placeholder="Type your message..." disabled></textarea>
-
-							<div class="input-group-append send-message">
-								<button class="input-group-text send_btn" type="submit" disabled><i class="fas fa-location-arrow"></i></button>
-							</div>
-							@endif
-						</div>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
-	<!-- <script>
-		let chat_box = document.getElementsByClassName('.chat_box');
-
-		chat_box.forEach(function(chat) {
-			chat.addEventListener('click', () => {
-				alert('dcedc');
-			});
-		});
-	</script> -->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 	<script>
 		$(document).ready(function() {
@@ -788,39 +533,7 @@ use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 			$('#profile').click(function() {
 				$('#profile_pop').toggle();
 			});
-			var form = '#form';
-			$(form).on('submit', function(event) {
-				event.preventDefault();
-				var data = `<div class="d-flex justify-content-start mb-4 ">
-					<div class="img_cont_msg">
-						<img src="{{Cloudinary::getUrl(User::where('id',$user_id)->first()->image)}}" class="rounded-circle user_img_msg">
-					</div>
-					<div class="msg_cotainer">` +
-					$('.type_msg').val() +
-					`
-					    <span class="msg_time">now</span>
-					</div>
-				</div>`;
-
-				$(".msg_card_body").append(data);
-
-				$.ajax({
-					url: '/gpay.com/messages/send/request',
-					method: 'POST',
-					data: new FormData(this),
-					dataType: 'JSON',
-					contentType: false,
-					cache: false,
-					processData: false,
-					success: function(response) {
-						//
-					},
-					error: function(response) {
-						//
-					}
-				});
-				$('.type_msg').val('');
-			});
+		
 		});
 	</script>
 </body>

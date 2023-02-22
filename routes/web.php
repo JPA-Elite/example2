@@ -14,6 +14,11 @@ use Illuminate\Support\Facades\Route;
 use App\Models\UserBusiness;
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 use Laravel\Socialite\Facades\Socialite;
+use Illuminate\Support\Facades\Cache;
+
+
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -32,7 +37,14 @@ Route::redirect('/', '/gpay.com');
 
 Route::get('/gpay.com', function () {
     session_unset();
+
+    // Set the Cloudinary API credentials
+
+    // Check if the images are cached
     return view('home');
+    
+
+   
 });
 
 Route::any('/gpay.com/dash', function (Request $request) {
@@ -42,16 +54,8 @@ Route::any('/gpay.com/dash', function (Request $request) {
 
 
         if ($user && Hash::check($request->password, $user->password)) {
-
-            // return response(
-            //     [
-            //         'message' => "successfully login",
-            //         'email' => $request->email,
-            //         'password' => $request->password
-            //     ]
-            // );
             $_SESSION["user_id"] =  $user->id;
-            return redirect()->route('message');
+            return redirect()->route('dashboard');
         } else {
             return Redirect::back()->withErrors(
                 [
@@ -133,11 +137,28 @@ Route::view('/gpay.com/login/', 'login')->name('login');
 
 Route::view('/gpay.com/pricing/', 'pricing');
 Route::view('/gpay.com/demo/', 'demo');
+Route::view('/gpay.com/test/', 'test');
 
 
 
 Route::resource('user', UserController::class);
+//dashboard
+Route::get('/gpay.com/dashboard/', function () {
+    $user_id = null;
+    try {
+        $user_id_temp = $_SESSION["user_id"];
+        $user_id = $user_id_temp;
+    } catch (Exception $e) {
+        return redirect()->route('login');
+    }
+    
 
+    return view('dashboard.dash', [
+        'image' => Cloudinary::getUrl(User::where('id', $user_id)->first()->image),
+        'user_id' => $user_id,
+        
+    ]);
+})->name('dashboard');
 //dashboard messages
 Route::get('/gpay.com/messages/', function () {
     $user_id = null;
@@ -148,6 +169,8 @@ Route::get('/gpay.com/messages/', function () {
         return redirect()->route('login');
     }
     $array = array();
+
+
     $data = UserChat::all();
     foreach ($data as $datum) {
         if ($datum->first_user == $user_id && $datum->second_user != $user_id) {
@@ -156,6 +179,7 @@ Route::get('/gpay.com/messages/', function () {
             array_push($array, $datum->first_user);
         }
     }
+  
 
     $message_id = null;
     if (count(array_unique($array)) == 0) {
@@ -168,7 +192,8 @@ Route::get('/gpay.com/messages/', function () {
         'image' => Cloudinary::getUrl(User::where('id', $user_id)->first()->image),
         'chats' => array_unique($array),
         'message_id' => $message_id,
-        'user_id' => $user_id
+        'user_id' => $user_id,
+        
     ]);
 })->name('message');
 Route::get('/gpay.com/messages/{id}', function ($id) {
@@ -181,7 +206,7 @@ Route::get('/gpay.com/messages/{id}', function ($id) {
     }
 
     $array = array();
-    $data = UserChat::all();
+    $data = UserChat::orderBy('created_at', 'desc')->get();
     foreach ($data as $datum) {
         if ($datum->first_user == $user_id) {
             array_push($array, $datum->second_user);
@@ -253,7 +278,7 @@ Route::get('/gpay.com/login/auth/callback', function () {
     }
 
     $_SESSION["user_id"] = $user_id;
-    return redirect()->route('message');
+    return redirect()->route('dashboard');
 
     // dd($user);
 });
@@ -263,13 +288,16 @@ Route::get('/gpay.com/upload', function () {
 });
 
 Route::get('/gpay.com/upload/post', function () {
-    $upload = Cloudinary::upload('https://github.com/JPA-EliteDeveloper/images/blob/main/2.jpg?raw=true',
-    [
-        "responsive_breakpoints" => [
-            "create_derived" => true, 
-            "bytes_step" => 15000, 
-            "min_width" => 200, 
-            "max_width" => 1000 ]]
+    $upload = Cloudinary::upload(
+        'https://github.com/JPA-EliteDeveloper/images/blob/main/2.jpg?raw=true',
+        [
+            "responsive_breakpoints" => [
+                "create_derived" => true,
+                "bytes_step" => 15000,
+                "min_width" => 200,
+                "max_width" => 1000
+            ]
+        ]
     )->getPublicId();
     // User::where('email', 'joshua.algadipe@student.passerellesnumeriques.org')->update([
     //     'image' => $upload

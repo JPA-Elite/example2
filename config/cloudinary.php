@@ -21,7 +21,10 @@ return [
     */
     'notification_url' => env('CLOUDINARY_NOTIFICATION_URL'),
 
-
+    "cloud_name" => "duwyfmk8t",
+    "api_key" => "282451578226125",
+    "api_secret" => "HhpQFL9p94cgTmjsJg1RDzW0Bkw",
+    "secure" => true,
     /*
     |--------------------------------------------------------------------------
     | Cloudinary Configuration

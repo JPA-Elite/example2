@@ -7,7 +7,9 @@
     "require": {
         "php": "^8.0.2",
         "cloudinary-labs/cloudinary-laravel": "^2.0",
+        "cloudinary/cloudinary_php": "^2.10",
         "guzzlehttp/guzzle": "^7.2",
+        "illuminate/cache": "*",
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^3.0",
         "laravel/socialite": "^5.6",
@@ -26,7 +28,8 @@
         "psr-4": {
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
-            "Database\\Seeders\\": "database/seeders/"
+            "Database\\Seeders\\": "database/seeders/",
+            "Cloudinary\\": "vendor/cloudinary/cloudinary_php/src/"
         }
     },
     "autoload-dev": {
