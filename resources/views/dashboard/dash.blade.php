@@ -15,18 +15,18 @@ use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 	<title>Dashboard</title>
 	<link rel="icon" type="image/x-icon" href="https://github.com/JPA-EliteDeveloper/images/blob/main/logo.png?raw=true">
 	<script defer src="/_vercel/insights/script.js"></script>
-	<link href="{{asset('css/4111.bootstrap.min.css')}}" rel="stylesheet" id="bootstrap-css">
-	<script src="{{asset('js/411.bootstrap.min.js')}}"></script>
+	<link href="{{secure_asset('css/4111.bootstrap.min.css')}}" rel="stylesheet" id="bootstrap-css">
+	<script src="{{secure_asset('js/411.bootstrap.min.js')}}"></script>
 
-	<link rel="stylesheet" href="{{asset('css/stackpath.bootstrapcdn.413.min.css')}}" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<link rel="stylesheet" href="{{secure_asset('css/stackpath.bootstrapcdn.413.min.css')}}" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 
-	<script src="{{asset('js/331.jquery.min.js')}}"></script>
-	<link rel="stylesheet" type="text/css" href="{{asset('css/customscrollbar.min.css')}}">
-	<script type="text/javascript" src="{{asset('js/customscrollbar.min.js')}}"></script>
-	<link href="{{asset('css/4111.bootstrap.min.css')}}"  rel="stylesheet" id="bootstrap-css">
-	<script src="{{asset('js/411.bootstrap.min.js')}}"></script>
-	<script src="{{asset('js/321.min.js')}}"></script>
+	<script src="{{secure_asset('js/331.jquery.min.js')}}"></script>
+	<link rel="stylesheet" type="text/css" href="{{secure_asset('css/customscrollbar.min.css')}}">
+	<script type="text/javascript" src="{{secure_asset('js/customscrollbar.min.js')}}"></script>
+	<link href="{{secure_asset('css/4111.bootstrap.min.css')}}"  rel="stylesheet" id="bootstrap-css">
+	<script src="{{secure_asset('js/411.bootstrap.min.js')}}"></script>
+	<script src="{{secure_asset('js/321.min.js')}}"></script>
 	<style>
 		@import url("//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
 
