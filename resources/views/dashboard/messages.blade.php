@@ -501,7 +501,7 @@ use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 				<img src="data:image/jpeg;base64,<?php echo base64_encode($image); ?>" alt="" style="width: 40px;height:40px;border-radius: 50%;">
 			</a>
 			<div id="profile_pop" style="position: absolute;right:0px;top:75px;z-index: 1;background-color: white;">
-				<a class="dropdown-item" href="#">Profile</a>
+				<a class="dropdown-item" href="/gpay.com/profile/">Profile</a>
 				<a class="dropdown-item" href="#">Settings</a>
 				<div class="dropdown-divider"></div>
 				<a class="dropdown-item" href="/">Logout</a>

@@ -244,6 +244,24 @@ Route::post('/gpay.com/messages/send/request', function (Request $request) {
         'message' => $request->message
     ]);
 });
+Route::get('/gpay.com/profile/', function () {
+    $user_id = null;
+    try {
+        $user_id_temp = $_SESSION["user_id"];
+        $user_id = $user_id_temp;
+    } catch (Exception $e) {
+        return redirect()->route('login');
+    }
+
+
+    return view('dashboard.profile', [
+        'user' => User::where('id', $user_id)->first(),
+        'image' => User::where('id', $user_id)->first()->image,
+        'user_id' => $user_id,
+        'u_buss' => UserBusiness::where('id', $user_id) ->first()
+
+    ]);
+})->name('profile');
 //sign in with google
 Route::get('/gpay.com/login/auth/redirect', function () {
     return Socialite::driver('google')->redirect();
@@ -306,10 +324,18 @@ Route::get('/gpay.com/upload', function () {
 });
 
 Route::post('/gpay.com/upload/post', function (Request $request) {
+    $user_id = null;
+    try {
+        $user_id_temp = $_SESSION["user_id"];
+        $user_id = $user_id_temp;
+    } catch (Exception $e) {
+        return redirect()->route('login');
+    }
+
     try {
         // Retrieve the uploaded image
         $image = $request->file('image');
-        $id = 8;
+        $id = $user_id;
         // Check if the image size is less than or equal to 20kb
         if (!$image) {
             return Redirect::back()->withErrors([
@@ -344,10 +370,11 @@ Route::post('/gpay.com/upload/post', function (Request $request) {
         }
 
         // Redirect to a success page
-        return response('yes');
+        return Redirect::back();
     } catch (Exception $err) {
         return Redirect::back()->withErrors([
             'img_err' => 'There is an error!',
         ]);
+        
     }
 });
