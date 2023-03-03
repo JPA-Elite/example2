@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('phone');
             $table->string('location');
-            $table->string('image')->nullable();
+            $table->longText('image')->nullable();
             $table->string('verified')->nullable();
             $table->rememberToken();
             $table->timestamps();

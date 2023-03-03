@@ -15,18 +15,19 @@ use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 	<title>Dashboard</title>
 	<link rel="icon" type="image/x-icon" href="https://github.com/JPA-EliteDeveloper/images/blob/main/logo.png?raw=true">
 	<script defer src="/_vercel/insights/script.js"></script>
-	<link href="{{secure_asset('css/4111.bootstrap.min.css')}}" rel="stylesheet" id="bootstrap-css">
-	<script src="{{secure_asset('js/411.bootstrap.min.js')}}"></script>
-
-	<link rel="stylesheet" href="{{secure_asset('css/stackpath.bootstrapcdn.413.min.css')}}" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<link rel="icon" type="image/x-icon" href="https://github.com/JPA-EliteDeveloper/images/blob/main/logo.png?raw=true">
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 
-	<script src="{{secure_asset('js/331.jquery.min.js')}}"></script>
-	<link rel="stylesheet" type="text/css" href="{{secure_asset('css/customscrollbar.min.css')}}">
-	<script type="text/javascript" src="{{secure_asset('js/customscrollbar.min.js')}}"></script>
-	<link href="{{secure_asset('css/4111.bootstrap.min.css')}}"  rel="stylesheet" id="bootstrap-css">
-	<script src="{{secure_asset('js/411.bootstrap.min.js')}}"></script>
-	<script src="{{secure_asset('js/321.min.js')}}"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.js"></script>
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<style>
 		@import url("//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
 
@@ -496,7 +497,7 @@ use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
             <span class="badge badge-primary">11</span>
           </i> -->
 
-				<img src="{{$image}}" alt="" style="width: 40px;height:40px;border-radius: 50%;">
+				<img src="data:image/jpeg;base64,<?php echo base64_encode($image); ?>" alt="" style="width: 40px;height:40px;border-radius: 50%;">
 			</a>
 			<div id="profile_pop" style="position: absolute;right:0px;top:75px;z-index: 1;background-color: white;">
 				<a class="dropdown-item" href="#">Profile</a>

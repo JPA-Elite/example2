@@ -1,6 +1,7 @@
 <?php
 session_start();
 
+
 use App\Http\Controllers\CreateNewPasswordController;
 use App\Http\Controllers\ForgotPassMailController;
 use App\Http\Controllers\UserController;
@@ -12,9 +13,12 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 use App\Models\UserBusiness;
-use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Facades\Cache;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
+use Intervention\Image\Facades\Image;
+use PhpParser\Node\NullableType;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 
 
@@ -42,9 +46,6 @@ Route::get('/gpay.com', function () {
 
     // Check if the images are cached
     return view('home');
-    
-
-   
 });
 
 Route::any('/gpay.com/dash', function (Request $request) {
@@ -151,16 +152,18 @@ Route::get('/gpay.com/dashboard/', function () {
     } catch (Exception $e) {
         return redirect()->route('login');
     }
-    
+
 
     return view('dashboard.dash', [
-        'image' => Cloudinary::getUrl(User::where('id', $user_id)->first()->image),
+        'image' => User::where('id', $user_id)->first()->image,
         'user_id' => $user_id,
-        
+
     ]);
 })->name('dashboard');
 //dashboard messages
 Route::get('/gpay.com/messages/', function () {
+
+
     $user_id = null;
     try {
         $user_id_temp = $_SESSION["user_id"];
@@ -168,18 +171,22 @@ Route::get('/gpay.com/messages/', function () {
     } catch (Exception $e) {
         return redirect()->route('login');
     }
-    $array = array();
 
+    $array = Cache::remember('all_data', 1, function () {
 
-    $data = UserChat::all();
-    foreach ($data as $datum) {
-        if ($datum->first_user == $user_id && $datum->second_user != $user_id) {
-            array_push($array, $datum->second_user);
-        } else if ($datum->first_user != $user_id && $datum->second_user == $user_id) {
-            array_push($array, $datum->first_user);
+        $image_urls = array();
+        $data = UserChat::all();
+        foreach ($data as $datum) {
+            if ($datum->first_user == $_SESSION["user_id"]  && $datum->second_user != $_SESSION["user_id"]) {
+                array_push($image_urls, $datum->second_user);
+            } else if ($datum->first_user != $_SESSION["user_id"] && $datum->second_user == $_SESSION["user_id"]) {
+                array_push($image_urls, $datum->first_user);
+            }
         }
-    }
-  
+        return $image_urls;
+    });
+
+
 
     $message_id = null;
     if (count(array_unique($array)) == 0) {
@@ -188,14 +195,19 @@ Route::get('/gpay.com/messages/', function () {
         $message_id  = array_unique($array)[0];
     }
 
+    $image_user = Cache::remember('image_user', 1, function () {
+        return User::where('id', $_SESSION["user_id"])->first()->image;
+    });
+
     return view('dashboard.messages', [
-        'image' => Cloudinary::getUrl(User::where('id', $user_id)->first()->image),
+        'image' => $image_user,
         'chats' => array_unique($array),
         'message_id' => $message_id,
         'user_id' => $user_id,
-        
+
     ]);
 })->name('message');
+
 Route::get('/gpay.com/messages/{id}', function ($id) {
     $user_id = null;
     try {
@@ -210,12 +222,14 @@ Route::get('/gpay.com/messages/{id}', function ($id) {
     foreach ($data as $datum) {
         if ($datum->first_user == $user_id) {
             array_push($array, $datum->second_user);
-        } else {
+        } else if ($datum->second_user == $user_id) {
             array_push($array, $datum->first_user);
+        } else {
+            array_push($array, $id);
         }
     }
     return view('dashboard.messages', [
-        'image' => Cloudinary::getUrl(User::where('id', $user_id)->first()->image),
+        'image' => User::where('id', $user_id)->first()->image,
         'chats' => array_unique($array),
         'message_id' => $id,
         'user_id' => $user_id
@@ -238,16 +252,17 @@ Route::get('/gpay.com/login/auth/redirect', function () {
 Route::get('/gpay.com/login/auth/callback', function () {
     $user = Socialite::driver('google')->user();
     $user_id = null;
-    if (User::where('email', $user->getEmail())->first() == '') {
+    if (User::where('email', $user->getEmail())->first() == null) {
         // "no account yet";
-        $upload = Cloudinary::upload($user->getAvatar())->getPublicId();
+        $image_data = file_get_contents($user->getAvatar());
+
         User::create([
             'name' => $user->getName(),
             'email' =>  $user->getEmail(),
             'password' => '',
             'phone' => '',
             'location' => '',
-            'image' =>  $upload,
+            'image' => $image_data,
             'verified' => 'done'
         ]);
 
@@ -264,20 +279,23 @@ Route::get('/gpay.com/login/auth/callback', function () {
             'customized' =>  '',
             'user_id' => $user_id
         ]);
+        $_SESSION["user_id"] = $user_id;
     } else {
         // "has an account already";
         $user_id =  User::where('email',  $user->getEmail())->first()->id;
         $user_image_id =  User::where('email',  $user->getEmail())->first()->image;
-        Cloudinary::destroy($user_image_id);
-        $upload = Cloudinary::upload($user->getAvatar())->getPublicId();
+
+        $image_data = file_get_contents($user->getAvatar());
 
         User::where('id', $user_id)->update([
             'name' => $user->getName(),
-            'image' => $upload
+            'image' => $image_data
         ]);
+
+        $_SESSION["user_id"] = $user_id;
     }
 
-    $_SESSION["user_id"] = $user_id;
+
     return redirect()->route('dashboard');
 
     // dd($user);
@@ -287,20 +305,49 @@ Route::get('/gpay.com/upload', function () {
     return view('upload');
 });
 
-Route::get('/gpay.com/upload/post', function () {
-    $upload = Cloudinary::upload(
-        'https://github.com/JPA-EliteDeveloper/images/blob/main/2.jpg?raw=true',
-        [
-            "responsive_breakpoints" => [
-                "create_derived" => true,
-                "bytes_step" => 15000,
-                "min_width" => 200,
-                "max_width" => 1000
-            ]
-        ]
-    )->getPublicId();
-    // User::where('email', 'joshua.algadipe@student.passerellesnumeriques.org')->update([
-    //     'image' => $upload
-    // ]);
-    dd($upload);
+Route::post('/gpay.com/upload/post', function (Request $request) {
+    try {
+        // Retrieve the uploaded image
+        $image = $request->file('image');
+        $id = 8;
+        // Check if the image size is less than or equal to 20kb
+        if (!$image) {
+            return Redirect::back()->withErrors([
+                'img_err' => 'No image found!',
+            ]);
+        } else if ($image->getSize() > 20000) {
+            // Compress the image using TinyPNG API
+            $api_key = env('TINYPNG_API_KEY');
+            $client = new \GuzzleHttp\Client();
+            $response = $client->post('https://api.tinify.com/shrink', [
+                'headers' => [
+                    'Authorization' => 'Basic ' . base64_encode('api:' . $api_key),
+                ],
+                'body' => file_get_contents($image->getPathname()),
+            ]);
+
+            $compressed_data = json_decode((string) $response->getBody());
+            $compressed_url = $compressed_data->output->url;
+
+            // Download the compressed image and save it to the database
+
+            $compressed_image_data = file_get_contents($compressed_url);
+            User::where('id', $id)->update([
+                'image' => $compressed_image_data,
+            ]);
+        } else {
+            // Save the original image
+            $image_data = file_get_contents($image->getPathname());
+            User::where('id', $id)->update([
+                'image' => $image_data,
+            ]);
+        }
+
+        // Redirect to a success page
+        return response('yes');
+    } catch (Exception $err) {
+        return Redirect::back()->withErrors([
+            'img_err' => 'There is an error!',
+        ]);
+    }
 });

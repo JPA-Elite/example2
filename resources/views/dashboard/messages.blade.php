@@ -15,18 +15,18 @@ use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 	<title>Chat</title>
 	<link rel="icon" type="image/x-icon" href="https://github.com/JPA-EliteDeveloper/images/blob/main/logo.png?raw=true">
 	<script defer src="/_vercel/insights/script.js"></script>
-	<link href="{{secure_asset('css/4111.bootstrap.min.css')}}" rel="stylesheet" id="bootstrap-css">
-	<script src="{{secure_asset('js/411.bootstrap.min.js')}}"></script>
-
-	<link rel="stylesheet" href="{{secure_asset('css/stackpath.bootstrapcdn.413.min.css')}}" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 
-	<script src="{{secure_asset('js/331.jquery.min.js')}}"></script>
-	<link rel="stylesheet" type="text/css" href="{{secure_asset('css/customscrollbar.min.css')}}">
-	<script type="text/javascript" src="{{secure_asset('js/customscrollbar.min.js')}}"></script>
-	<link href="{{secure_asset('css/4111.bootstrap.min.css')}}"  rel="stylesheet" id="bootstrap-css">
-	<script src="{{secure_asset('js/411.bootstrap.min.js')}}"></script>
-	<script src="{{secure_asset('js/321.min.js')}}"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.js"></script>
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<style>
 		@import url("//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
 
@@ -498,7 +498,7 @@ use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
             <span class="badge badge-primary">11</span>
           </i> -->
 
-				<img src="{{$image}}" alt="" style="width: 40px;height:40px;border-radius: 50%;">
+				<img src="data:image/jpeg;base64,<?php echo base64_encode($image); ?>" alt="" style="width: 40px;height:40px;border-radius: 50%;">
 			</a>
 			<div id="profile_pop" style="position: absolute;right:0px;top:75px;z-index: 1;background-color: white;">
 				<a class="dropdown-item" href="#">Profile</a>
@@ -541,7 +541,8 @@ use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 								<li class="active chat_box" style="cursor:pointer">
 									<div class="d-flex bd-highlight">
 										<div class="img_cont">
-											<img src="{{Cloudinary::getUrl(User::where('id',$chat)->first()->image)}}" class="rounded-circle user_img">
+
+											<img src="data:image/jpeg;base64,{{base64_encode(User::where('id',$chat)->first()->image)}}" class="rounded-circle user_img">
 											<span class="online_icon"></span>
 										</div>
 										<div class="user_info">
@@ -566,7 +567,9 @@ use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 								<li style="cursor:pointer" class="chat_box">
 									<div class="d-flex bd-highlight">
 										<div class="img_cont">
-											<img src="{{Cloudinary::getUrl(User::where('id',$chat)->first()->image)}}" class="rounded-circle user_img">
+
+
+											<img src="data:image/jpeg;base64,{{base64_encode(User::where('id',$chat)->first()->image)}}" class="rounded-circle user_img">
 											<span class="online_icon"></span>
 										</div>
 										<div class="user_info">
@@ -616,15 +619,16 @@ use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 									</div>
 
 									<div class="modal-body bg-secondary">
-										@if($message_id != 0)
-                                        <?php $users = User::all();?>
+										
+										<?php $users = User::all(); ?>
 										@foreach ($users as $user)
-                                        @if($user->id != $user_id)
+										@if($user->id != $user_id)
 										<a href="/gpay.com/messages/{{$user->id}}" class="chat_list2">
 											<li class="chat_box" style="cursor:pointer">
 												<div class="d-flex bd-highlight">
 													<div class="img_cont">
-														<img src="{{Cloudinary::getUrl($user->image)}}" class="rounded-circle user_img">
+
+														<img src="data:image/jpeg;base64,<?php echo base64_encode($user->image); ?>" class="rounded-circle user_img">
 														<span class="online_icon"></span>
 													</div>
 													<div class="user_info">
@@ -641,7 +645,7 @@ use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 												</div>
 											</li>
 										</a>
-                                        @endif
+										@endif
 
 
 
@@ -650,7 +654,7 @@ use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 										$total++
 										?>
 										@endforeach
-										@endif
+									
 									</div>
 									<div class="modal-footer">
 										<!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
@@ -669,7 +673,8 @@ use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 						<div class="d-flex bd-highlight">
 							@if($message_id != 0)
 							<div class="img_cont">
-								<img src="{{Cloudinary::getUrl(User::where('id',$message_id)->first()->image)}}" class="rounded-circle user_img">
+
+								<img src="data:image/jpeg;base64,<?php echo base64_encode(User::where('id', $message_id)->first()->image); ?>" class="rounded-circle user_img">
 								<span class="online_icon"></span>
 							</div>
 
@@ -707,7 +712,8 @@ use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 						@if($chat->first_user == $user_id && $chat->second_user == $message_id)
 						<div class="d-flex justify-content-start mb-4 ">
 							<div class="img_cont_msg">
-								{{-- <img src="{{Cloudinary::getUrl(User::where('id',$user_id)->first()->image)}}" class="rounded-circle user_img_msg"> --}}
+
+								<img src="data:image/jpeg;base64,<?php echo base64_encode(User::where('id', $user_id)->first()->image); ?>" class="rounded-circle user_img_msg">
 							</div>
 							<div class="msg_cotainer">
 								{{$chat->message}}
@@ -722,7 +728,8 @@ use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 								<span class="msg_time_send">{{$chat->created_at}}</span>
 							</div>
 							<div class="img_cont_msg">
-								{{-- <img src="{{Cloudinary::getUrl(User::where('id',$message_id)->first()->image)}}" class="rounded-circle user_img_msg"> --}}
+
+								<img src="data:image/jpeg;base64,<?php echo base64_encode(User::where('id', $message_id)->first()->image); ?>" class="rounded-circle user_img_msg">
 							</div>
 						</div>
 						@endif
@@ -793,7 +800,8 @@ use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 				event.preventDefault();
 				var data = `<div class="d-flex justify-content-start mb-4 ">
 					<div class="img_cont_msg">
-						<img src="{{Cloudinary::getUrl(User::where('id',$user_id)->first()->image)}}" class="rounded-circle user_img_msg">
+				
+						<img src="data:image/jpeg;base64,<?php echo base64_encode(User::where('id', $user_id)->first()->image); ?>" class="rounded-circle user_img_msg">
 					</div>
 					<div class="msg_cotainer">` +
 					$('.type_msg').val() +

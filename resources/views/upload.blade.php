@@ -187,11 +187,29 @@
                     <button type="submit" class="btn bg-purple" id="signin">Post</button>
                 </div>
             </form>
+            @if($errors->any())
+
+            @if($errors->first('img_err'))
+            <div class="alert alert-warning mt-2 text-center text-dark alert-box">
+                <strong>{{$errors->first('img_err')}}</strong>
+            </div>
+            @endif
+
+            @endif
 
 
         </div>
 
     </div>
+
+    <script>
+        const form = document.querySelector('#form');
+        form.addEventListener('mouseover', () => {
+            window.setTimeout(function() {
+                document.querySelector('.alert-box').style.display = 'none';
+            }, 1000);
+        });
+    </script>
 
 
     <!-- <div class="container" style="margin-top: 100px;">
