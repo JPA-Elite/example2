@@ -24,6 +24,10 @@
       "LOG_CHANNEL": "stderr",
       "SESSION_DRIVER": "cookie"
     },
-    "timeout": 60
+    "serverless": {
+      "function": {
+        "maxDuration": 60
+      }
+    }
   }
   
