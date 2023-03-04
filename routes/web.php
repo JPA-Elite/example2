@@ -162,8 +162,6 @@ Route::get('/gpay.com/dashboard/', function () {
 })->name('dashboard');
 //dashboard messages
 Route::get('/gpay.com/messages/', function () {
-
-
     $user_id = null;
     try {
         $user_id_temp = $_SESSION["user_id"];
@@ -172,36 +170,36 @@ Route::get('/gpay.com/messages/', function () {
         return redirect()->route('login');
     }
 
-    $array = Cache::remember('all_data', 1, function () {
+    // $array = Cache::remember('all_data', 1, function () {
 
-        $image_urls = array();
-        $data = UserChat::all();
-        foreach ($data as $datum) {
-            if ($datum->first_user == $_SESSION["user_id"]  && $datum->second_user != $_SESSION["user_id"]) {
-                array_push($image_urls, $datum->second_user);
-            } else if ($datum->first_user != $_SESSION["user_id"] && $datum->second_user == $_SESSION["user_id"]) {
-                array_push($image_urls, $datum->first_user);
-            }
+    $image_urls = array();
+    $data = UserChat::all();
+    foreach ($data as $datum) {
+        if ($datum->first_user == $_SESSION["user_id"]  && $datum->second_user != $_SESSION["user_id"]) {
+            array_push($image_urls, $datum->second_user);
+        } else if ($datum->first_user != $_SESSION["user_id"] && $datum->second_user == $_SESSION["user_id"]) {
+            array_push($image_urls, $datum->first_user);
         }
-        return $image_urls;
-    });
+    }
+    // return $image_urls;
+    // });
 
 
 
     $message_id = null;
-    if (count(array_unique($array)) == 0) {
+    if (count(array_unique($image_urls)) == 0) {
         $message_id = 0;
     } else {
-        $message_id  = array_unique($array)[0];
+        $message_id  = array_unique($image_urls)[0];
     }
 
-    $image_user = Cache::remember('image_user', 1, function () {
-        return User::where('id', $_SESSION["user_id"])->first()->image;
-    });
+    $image_user =
+        User::where('id', $_SESSION["user_id"])->first()->image;
+    // });
 
     return view('dashboard.messages', [
         'image' => $image_user,
-        'chats' => array_unique($array),
+        'chats' => array_unique($image_urls),
         'message_id' => $message_id,
         'user_id' => $user_id,
 
@@ -258,7 +256,7 @@ Route::get('/gpay.com/profile/', function () {
         'user' => User::where('id', $user_id)->first(),
         'image' => User::where('id', $user_id)->first()->image,
         'user_id' => $user_id,
-        'u_buss' => UserBusiness::where('id', $user_id) ->first()
+        'u_buss' => UserBusiness::where('id', $user_id)->first()
 
     ]);
 })->name('profile');
@@ -375,6 +373,5 @@ Route::post('/gpay.com/upload/post', function (Request $request) {
         return Redirect::back()->withErrors([
             'img_err' => 'There is an error!',
         ]);
-        
     }
 });
