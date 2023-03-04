@@ -195,7 +195,6 @@ Route::get('/gpay.com/messages/', function () {
 
     $image_user =
         User::where('id', $_SESSION["user_id"])->first()->image;
-    // });
 
     return view('dashboard.messages', [
         'image' => $image_user,
