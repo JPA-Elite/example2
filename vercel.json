@@ -1,14 +1,12 @@
 {
-    "functions": {
-      "api/index.php": {
-        "runtime": "vercel-php@0.5.2"
-      }
-    },
+    "version": 2,
+    "name": "my-app",
+    "builds": [
+      { "src": "public/**", "use": "@now/static" }
+    ],
     "routes": [
-      {
-        "src": "/(.*)",
-        "dest": "/api/index.php"
-      }
+      { "src": "/api/(.*)", "dest": "api/index.php" },
+      { "src": "/(.*)", "dest": "public/$1" }
     ],
     "env": {
       "APP_ENV": "production",
@@ -24,9 +22,10 @@
       "LOG_CHANNEL": "stderr",
       "SESSION_DRIVER": "cookie"
     },
-    "serverless": {
-      "function": {
-        "maxDuration": 60
+    "functions": {
+      "api/index.php": {
+        "runtime": "vercel-php@0.5.2",
+        "timeout": 60
       }
     }
   }
