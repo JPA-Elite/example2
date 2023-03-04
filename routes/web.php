@@ -170,40 +170,45 @@ Route::get('/gpay.com/messages/', function () {
         return redirect()->route('login');
     }
 
-    // $array = Cache::remember('all_data', 1, function () {
+    $cache_key = 'message_data_' . $user_id;
+    $cached_data = Cache::get($cache_key);
 
-    $image_urls = array();
-    $data = UserChat::all();
-    foreach ($data as $datum) {
-        if ($datum->first_user == $_SESSION["user_id"]  && $datum->second_user != $_SESSION["user_id"]) {
-            array_push($image_urls, $datum->second_user);
-        } else if ($datum->first_user != $_SESSION["user_id"] && $datum->second_user == $_SESSION["user_id"]) {
-            array_push($image_urls, $datum->first_user);
-        }
-    }
-    // return $image_urls;
-    // });
-
-
-
-    $message_id = null;
-    if (count(array_unique($image_urls)) == 0) {
-        $message_id = 0;
+    if ($cached_data) {
+        return $cached_data;
     } else {
-        $message_id  = array_unique($image_urls)[0];
+        $image_urls = array();
+        $data = UserChat::all();
+        foreach ($data as $datum) {
+            if ($datum->first_user == $_SESSION["user_id"]  && $datum->second_user != $_SESSION["user_id"]) {
+                array_push($image_urls, $datum->second_user);
+            } else if ($datum->first_user != $_SESSION["user_id"] && $datum->second_user == $_SESSION["user_id"]) {
+                array_push($image_urls, $datum->first_user);
+            }
+        }
+
+        $message_id = null;
+        if (count(array_unique($image_urls)) == 0) {
+            $message_id = 0;
+        } else {
+            $message_id  = array_unique($image_urls)[0];
+        }
+
+        $image_user =
+            User::where('id', $_SESSION["user_id"])->first()->image;
+
+        $view_data = view('dashboard.messages', [
+            'image' => $image_user,
+            'chats' => array_unique($image_urls),
+            'message_id' => $message_id,
+            'user_id' => $user_id,
+        ])->render();
+
+        Cache::put($cache_key, $view_data, 60);
+
+        return $view_data;
     }
-
-    $image_user =
-        User::where('id', $_SESSION["user_id"])->first()->image;
-
-    return view('dashboard.messages', [
-        'image' => $image_user,
-        'chats' => array_unique($image_urls),
-        'message_id' => $message_id,
-        'user_id' => $user_id,
-
-    ]);
 })->name('message');
+
 
 Route::get('/gpay.com/messages/{id}', function ($id) {
     $user_id = null;
@@ -212,6 +217,12 @@ Route::get('/gpay.com/messages/{id}', function ($id) {
         $user_id = $user_id_temp;
     } catch (Exception $e) {
         return redirect()->route('login');
+    }
+
+    $cacheKey = 'message_' . $id . '_' . $user_id;
+    $cachedData = Cache::get($cacheKey);
+    if ($cachedData !== null) {
+        return $cachedData;
     }
 
     $array = array();
@@ -225,14 +236,20 @@ Route::get('/gpay.com/messages/{id}', function ($id) {
             array_push($array, $id);
         }
     }
-    return view('dashboard.messages', [
+    $viewData = [
         'image' => User::where('id', $user_id)->first()->image,
         'chats' => array_unique($array),
         'message_id' => $id,
         'user_id' => $user_id
+    ];
 
-    ]);
+    $view = view('dashboard.messages', $viewData)->render();
+    Cache::put($cacheKey, $view, 60);
+
+    return $view;
 });
+
+
 Route::post('/gpay.com/messages/send/request', function (Request $request) {
     //    dd($request->all());
     UserChat::create([
