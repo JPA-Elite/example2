@@ -713,7 +713,7 @@ use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 						<div class="d-flex justify-content-start mb-4 ">
 							<div class="img_cont_msg">
 
-								<img src="data:image/jpeg;base64,<?php echo base64_encode(User::where('id', $user_id)->first()->image); ?>" class="rounded-circle user_img_msg">
+								
 							</div>
 							<div class="msg_cotainer">
 								{{$chat->message}}
@@ -729,7 +729,7 @@ use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 							</div>
 							<div class="img_cont_msg">
 
-								<img src="data:image/jpeg;base64,<?php echo base64_encode(User::where('id', $message_id)->first()->image); ?>" class="rounded-circle user_img_msg">
+							
 							</div>
 						</div>
 						@endif
