@@ -473,7 +473,7 @@ use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<ul class="navbar-nav ">
 				<li class="">
-					<a class="nav-link" href="#">
+					<a class="nav-link" href="/gpay.com/notification/">
 						<i class="fa fa-bell">
 							<span class="badge badge-info">11</span>
 						</i>

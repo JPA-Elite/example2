@@ -13,12 +13,11 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 use App\Models\UserBusiness;
+use App\Models\UserNotification;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Facades\Cache;
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
-use Intervention\Image\Facades\Image;
-use PhpParser\Node\NullableType;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Carbon\Carbon;
 
 
 
@@ -125,6 +124,11 @@ Route::any('/gpay.com/sign-up/account-process', function (Request $request) {
             'current_bill' =>  $_COOKIE["current_bill"],
             'customized' =>  $_COOKIE["customized"],
             'user_id' => $user_id
+        ]);
+        UserNotification::create([
+            'user_id' => $user_id,
+            'title' =>  "Registration Successful: Newly Created G-Pay Account",
+            'message' => "Thank you for joining and using our services.",
         ]);
         return redirect()->route('login');
     } else {
@@ -252,6 +256,26 @@ Route::get('/gpay.com/messages/{id}', function ($id) {
     return $view;
 });
 
+Route::get('/gpay.com/notification/', function () {
+    $user_id = null;
+    try {
+        $user_id_temp = $_SESSION["user_id"];
+        $user_id = $user_id_temp;
+    } catch (Exception $e) {
+        return redirect()->route('login');
+    }
+
+  
+   
+
+    
+    return view('dashboard.notification', [
+        'image' => User::where('id', $user_id)->first()->image,
+        'user_id' => $user_id,
+        'user_notifications' => UserNotification::where('user_id', $user_id)->get(),
+    ]);
+  
+});
 
 Route::post('/gpay.com/messages/send/request', function (Request $request) {
     //    dd($request->all());
@@ -313,6 +337,12 @@ Route::get('/gpay.com/login/auth/callback', function () {
             'current_bill' =>  '',
             'customized' =>  '',
             'user_id' => $user_id
+        ]);
+       
+        UserNotification::create([
+            'user_id' => $user_id,
+            'title' =>  "Registration Successful: Newly Created G-Pay Account",
+            'message' => "Thank you for joining and using our services.",
         ]);
         $_SESSION["user_id"] = $user_id;
     } else {
@@ -393,4 +423,7 @@ Route::post('/gpay.com/upload/post', function (Request $request) {
             'img_err' => 'There is an error!',
         ]);
     }
+});
+Route::fallback(function() {
+    return response("timeout");
 });

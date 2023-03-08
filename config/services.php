@@ -36,7 +36,7 @@ return [
         'client_secret' => env('GOOGLE_CLIENT_SECRET'),
         // https://example2-self.vercel.app/gpay.com/login/auth/callback
         //https://billing-solution.vercel.app/gpay.com/login/auth/callback
-        'redirect' => 'https://billing-solution.vercel.app/gpay.com/login/auth/callback',
+        'redirect' => 'http://billing-solution.vercel.app/gpay.com/login/auth/callback',
     ],
     //
 

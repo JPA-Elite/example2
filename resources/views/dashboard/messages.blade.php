@@ -472,8 +472,8 @@ use App\Models\UserChat;
 			</form>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<ul class="navbar-nav ">
-				<li class="">
-					<a class="nav-link" href="#">
+			<li class="">
+					<a class="nav-link" href="/gpay.com/notification/">
 						<i class="fa fa-bell">
 							<span class="badge badge-info">11</span>
 						</i>
@@ -546,7 +546,7 @@ use App\Models\UserChat;
 										</div>
 										<div class="user_info">
 											<span>
-												{{User::where('id',$chat)->first()->name;}}
+												{{User::where('id',$chat)->first()->name}}
 											</span>
 
 											<p>{{User::where('id',$chat)->first()->created_at }}</p>
@@ -573,7 +573,7 @@ use App\Models\UserChat;
 										</div>
 										<div class="user_info">
 											<span>
-												{{User::where('id',$chat)->first()->name;}}
+												{{User::where('id',$chat)->first()->name}}
 											</span>
 
 											<p>{{User::where('id',$chat)->first()->created_at }}</p>
@@ -632,7 +632,7 @@ use App\Models\UserChat;
 													</div>
 													<div class="user_info">
 														<span>
-															{{$user->name;}}
+															{{$user->name}}
 														</span>
 
 														<p>{{$user->created_at }}</p>
@@ -679,7 +679,7 @@ use App\Models\UserChat;
 
 							<div class="user_info">
 
-								<span>Chat with {{User::where('id',$message_id)->first()->name;}}</span>
+								<span>Chat with {{User::where('id',$message_id)->first()->name}}</span>
 								<p>Online</p>
 
 							</div>

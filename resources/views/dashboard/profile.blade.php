@@ -576,13 +576,13 @@
             </form>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <ul class="navbar-nav ">
-                <li class="">
-                    <a class="nav-link" href="#">
-                        <i class="fa fa-bell">
-                            <span class="badge badge-info">11</span>
-                        </i>
-                    </a>
-                </li>
+            <li class="">
+					<a class="nav-link" href="/gpay.com/notification/">
+						<i class="fa fa-bell">
+							<span class="badge badge-info">11</span>
+						</i>
+					</a>
+				</li>
                 <li class="">
                     <a class="nav-link" href="#">
                         <!-- <i class="fa fa-globe">
@@ -719,7 +719,11 @@
                                     <label>Company Name</label>
                                 </div>
                                 <div class="col-md-6">
-                                    <p>{{$u_buss->company_name}}</p>
+                                    @if (trim($u_buss) == "")
+                                    <p>{{ $u_buss->company_name}}</p>
+                                    @else
+                                    <p>No data added</p>
+                                    @endif
                                 </div>
                             </div>
                             <div class="row">
@@ -727,14 +731,23 @@
                                     <label>Company Does</label>
                                 </div>
                                 <div class="col-md-6">
-                                    <p>{{$u_buss->company_do}}</p>
+
+                                    @if (trim($u_buss) == "")
+                                    <p>{{ $u_buss->company_do}}</p>
+                                    @else
+                                    <p>No data added</p>
+                                    @endif
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <label>Business Description</label>
-
-                                    <p>{{$u_buss->describe_business}}</p>
+                                    <label>Business Description:</label>
+                                    
+                                    @if (trim($u_buss) == "")
+                                    <p>{{ $u_buss->describe_business}}</p>
+                                    @else
+                                    <p>No data added</p>
+                                    @endif
                                 </div>
                             </div><br>
                             <div class="row">
@@ -742,7 +755,12 @@
                                     <label>Currency</label>
                                 </div>
                                 <div class="col-md-6">
-                                    <p>{{$u_buss->currency}}</p>
+
+                                    @if (trim($u_buss) == "")
+                                    <p>{{ $u_buss->currency}}</p>
+                                    @else
+                                    <p>No data added</p>
+                                    @endif
                                 </div>
                             </div>
                             <div class="row">
@@ -750,7 +768,12 @@
                                     <label>Revenue Estimation</label>
                                 </div>
                                 <div class="col-md-6">
-                                    <p>{{$u_buss->estimate_revenue}}</p>
+
+                                    @if (trim($u_buss) == "")
+                                    <p>{{ $u_buss->estimate_revenue}}</p>
+                                    @else
+                                    <p>No data added</p>
+                                    @endif
                                 </div>
                             </div>
                             <div class="row">
@@ -759,7 +782,13 @@
 
                                 </div>
                                 <div class="col-md-6">
-                                    <p>{{$u_buss->current_bill}}</p>
+
+
+                                    @if (trim($u_buss) == "")
+                                    <p>{{ $u_buss->current_bill}}</p>
+                                    @else
+                                    <p>No data added</p>
+                                    @endif
                                 </div>
                             </div>
                             <div class="row">
@@ -768,7 +797,13 @@
 
                                 </div>
                                 <div class="col-md-6">
-                                    <p>{{$u_buss->customized}}</p>
+
+
+                                    @if (trim($u_buss) == "")
+                                    <p>{{ $u_buss->customized}}</p>
+                                    @else
+                                    <p>No data added</p>
+                                    @endif
                                 </div>
 
                             </div>
@@ -829,26 +864,8 @@
                     // read the selected file as a data URL
                     reader.readAsDataURL(file);
                     $("#upload-btn").prop("disabled", false);
-                    // var formData = new FormData();
-                    // var formData = $("#upload-form").serialize();
-                    // add the file to the FormData object
-                    //  formData.append("image", file);
-
-                    // $.ajax({
-                    //     url: '/gpay.com/upload/post',
-                    //     method: 'POST',
-                    //     data: formData,
-                    //     contentType: false,
-                    //     cache: false,
-                    //     processData: false,
-                    //     success: function(response) {
-                    //         alert('yes');
-                    //     },
-                    //     error: function(response) {
-                    //         alert(response)
-                    //     }
-                    // });
-                }else {
+                   
+                } else {
                     $("#upload-btn").prop("disabled", false);
                 }
             });
