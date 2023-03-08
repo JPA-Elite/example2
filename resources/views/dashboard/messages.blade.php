@@ -3,7 +3,6 @@
 
 use App\Models\User;
 use App\Models\UserChat;
-use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 ?>
 <!DOCTYPE html>
 <html lang="en">

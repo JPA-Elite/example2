@@ -21,7 +21,7 @@
             <p>We receive a request to change your password in your G-Pay account!</p>
             <p>To change password, click the button below:</p>
             {{-- https://example2-self.vercel.app/ --}}
-            <a href="https://example2-self.vercel.app/gpay.com/create-new-pass/{{$data['email']}}" style="cursor: pointer;"> <button class="btn btn-primary"
+            <a href="https://billing-solution.vercel.app/gpay.com/create-new-pass/{{$data['email']}}" style="cursor: pointer;"> <button class="btn btn-primary"
                     style="background: #0d6efd;color:#fff;border:none;padding:10px;cursor: pointer;">Change
                     Password</button></a>
         </div>

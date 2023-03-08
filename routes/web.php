@@ -176,15 +176,20 @@ Route::get('/gpay.com/messages/', function () {
     if ($cached_data) {
         return $cached_data;
     } else {
-        $image_urls = array();
-        $data = UserChat::all();
+        $image_urls = [];
+        $current_user_id = $_SESSION["user_id"];
+        $data = UserChat::where('first_user', $current_user_id)
+            ->orWhere('second_user', $current_user_id)
+            ->get(['first_user', 'second_user']);
+
         foreach ($data as $datum) {
-            if ($datum->first_user == $_SESSION["user_id"]  && $datum->second_user != $_SESSION["user_id"]) {
-                array_push($image_urls, $datum->second_user);
-            } else if ($datum->first_user != $_SESSION["user_id"] && $datum->second_user == $_SESSION["user_id"]) {
-                array_push($image_urls, $datum->first_user);
+            if ($datum->first_user == $current_user_id) {
+                $image_urls[] = $datum->second_user;
+            } else {
+                $image_urls[] = $datum->first_user;
             }
         }
+
 
         $message_id = null;
         if (count(array_unique($image_urls)) == 0) {
@@ -225,22 +230,20 @@ Route::get('/gpay.com/messages/{id}', function ($id) {
         return $cachedData;
     }
 
-    $array = array();
-    $data = UserChat::orderBy('created_at', 'desc')->get();
-    foreach ($data as $datum) {
-        if ($datum->first_user == $user_id) {
-            array_push($array, $datum->second_user);
-        } else if ($datum->second_user == $user_id) {
-            array_push($array, $datum->first_user);
-        } else {
-            array_push($array, $id);
-        }
-    }
+    $data = UserChat::where('first_user', $user_id)
+        ->orWhere('second_user', $user_id)
+        ->orderByDesc('created_at')
+        ->get();
+
+    $chats = $data->map(function ($datum) use ($user_id) {
+        return $datum->first_user == $user_id ? $datum->second_user : $datum->first_user;
+    })->unique()->toArray();
+
     $viewData = [
-        'image' => User::where('id', $user_id)->first()->image,
-        'chats' => array_unique($array),
+        'image' => User::where('id', $user_id)->value('image'),
+        'chats' => $chats,
         'message_id' => $id,
-        'user_id' => $user_id
+        'user_id' => $user_id,
     ];
 
     $view = view('dashboard.messages', $viewData)->render();

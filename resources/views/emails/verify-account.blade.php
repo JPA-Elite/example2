@@ -134,7 +134,7 @@
 
      {{-- https://example2-self.vercel.app/ --}}
 
-    <a href="https://example2-self.vercel.app/gpay.com/account-verification/" style="text-decoration: none;">
+    <a href="https://billing-solution.vercel.app/gpay.com/account-verification/" style="text-decoration: none;">
         <div class="button">
             <p>Verify my Email</p>
         </div>
