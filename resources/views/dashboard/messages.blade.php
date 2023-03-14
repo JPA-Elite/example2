@@ -526,12 +526,7 @@ use App\Models\UserChat;
 					<div class="card-body contacts_body">
 						<div class="contacts">
 							<?php
-
-
-
 							$total = 1;
-
-
 							?>
 							@if($message_id != 0)
 							@foreach ($chats as $chat)
@@ -550,18 +545,11 @@ use App\Models\UserChat;
 											</span>
 
 											<p>{{User::where('id',$chat)->first()->created_at }}</p>
-
-
-
-
 										</div>
 									</div>
 								</li>
 							</a>
-
-
-							@endif
-							@if($message_id != $chat)
+							@else
 							<a href="/gpay.com/messages/{{$chat}}" class="chat_list">
 								<li style="cursor:pointer" class="chat_box">
 									<div class="d-flex bd-highlight">

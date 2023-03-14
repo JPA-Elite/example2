@@ -174,48 +174,47 @@ Route::get('/gpay.com/messages/', function () {
         return redirect()->route('login');
     }
 
-    $cache_key = 'message_data_' . $user_id;
-    $cached_data = Cache::get($cache_key);
+    // $cache_key = 'message_data_' . $user_id;
+    // $cached_data = Cache::get($cache_key);
 
-    if ($cached_data) {
-        return $cached_data;
-    } else {
-        $image_urls = [];
-        $current_user_id = $_SESSION["user_id"];
-        $data = UserChat::where('first_user', $current_user_id)
-            ->orWhere('second_user', $current_user_id)
-            ->get(['first_user', 'second_user']);
+    // if ($cached_data) {
+    //     return $cached_data;
+    // } else {
+    $image_urls = array();
+    $current_user_id =  $user_id;
+    $data = UserChat::where('first_user', $current_user_id)
+        ->orWhere('second_user', $current_user_id)
+        ->get();
 
-        foreach ($data as $datum) {
-            if ($datum->first_user == $current_user_id) {
-                $image_urls[] = $datum->second_user;
-            } else {
-                $image_urls[] = $datum->first_user;
-            }
-        }
-
-
-        $message_id = null;
-        if (count(array_unique($image_urls)) == 0) {
-            $message_id = 0;
+    foreach ($data as $datum) {
+        if ($datum->first_user == $current_user_id) {
+            array_push($image_urls, $datum->second_user);
         } else {
-            $message_id  = array_unique($image_urls)[0];
+            array_push($image_urls, $datum->first_user);
         }
-
-        $image_user =
-            User::where('id', $_SESSION["user_id"])->first()->image;
-
-        $view_data = view('dashboard.messages', [
-            'image' => $image_user,
-            'chats' => array_unique($image_urls),
-            'message_id' => $message_id,
-            'user_id' => $user_id,
-        ])->render();
-
-        Cache::put($cache_key, $view_data, 60);
-
-        return $view_data;
     }
+
+
+    $message_id = null;
+    if (count(array_unique($image_urls)) == 0) {
+        $message_id = 0;
+    } else {
+        $message_id  = array_unique($image_urls)[0];
+    }
+
+    $image_user =
+        User::where('id', $_SESSION["user_id"])->first()->image;
+
+    $view_data = view('dashboard.messages', [
+        'image' => $image_user,
+        'chats' => array_unique($image_urls),
+        'message_id' => $message_id,
+        'user_id' => $user_id,
+    ])->render();
+
+    // Cache::put($cache_key, $view_data, 60);
+
+    return $view_data;
 })->name('message');
 
 
@@ -265,16 +264,30 @@ Route::get('/gpay.com/notification/', function () {
         return redirect()->route('login');
     }
 
-  
-   
+    $records = UserNotification::all();
+    // Filter the records based on the time difference
+    $filteredRecords_now = $records->filter(function ($record) {
+        $createdAt = Carbon::parse($record->created_at);
+        $now = Carbon::now();
+        $diffInSeconds = $now->diffInSeconds($createdAt);
+        return $diffInSeconds < 86400;
+    });
 
-    
+    // Filter the records based on the time difference
+    $filteredRecords_old = $records->filter(function ($record) {
+        $createdAt = Carbon::parse($record->created_at);
+        $now = Carbon::now();
+        $diffInSeconds = $now->diffInSeconds($createdAt);
+        return $diffInSeconds > 86400;
+    });
+
+
     return view('dashboard.notification', [
         'image' => User::where('id', $user_id)->first()->image,
         'user_id' => $user_id,
-        'user_notifications' => UserNotification::where('user_id', $user_id)->get(),
+        'user_notifications_now' => $filteredRecords_now,
+        'user_notifications_old' => $filteredRecords_old,
     ]);
-  
 });
 
 Route::post('/gpay.com/messages/send/request', function (Request $request) {
@@ -338,7 +351,7 @@ Route::get('/gpay.com/login/auth/callback', function () {
             'customized' =>  '',
             'user_id' => $user_id
         ]);
-       
+
         UserNotification::create([
             'user_id' => $user_id,
             'title' =>  "Registration Successful: Newly Created G-Pay Account",
@@ -424,6 +437,6 @@ Route::post('/gpay.com/upload/post', function (Request $request) {
         ]);
     }
 });
-Route::fallback(function() {
+Route::fallback(function () {
     return response("timeout");
 });

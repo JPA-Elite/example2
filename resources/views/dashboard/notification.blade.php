@@ -542,25 +542,7 @@ use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
                         <button type="button" class="btn btn-outline-success btn-sm pl-4 pr-4">View settings</button>
                     </div>
                 </div>
-                <!-- <div class="box mb-3 shadow-sm rounded bg-white profile-box text-center">
-                    <div class="p-5">
-                        <img src="https://bootdey.com/img/Content/avatar/avatar6.png" class="img-fluid" alt="Responsive image" />
-                    </div>
-                    <div class="p-3 border-top border-bottom">
-                        <h5 class="font-weight-bold text-dark mb-1 mt-0">Envato</h5>
-                        <p class="mb-0 text-muted">Melbourne, AU</p>
-                    </div>
-                    <div class="p-3">
-                        <div class="d-flex align-items-top mb-2">
-                            <p class="mb-0 text-muted">Posted</p>
-                            <p class="font-weight-bold text-dark mb-0 mt-0 ml-auto">1 day ago</p>
-                        </div>
-                        <div class="d-flex align-items-top">
-                            <p class="mb-0 text-muted">Applicant Rank</p>
-                            <p class="font-weight-bold text-dark mb-0 mt-0 ml-auto">25</p>
-                        </div>
-                    </div>
-                </div> -->
+
             </div>
             <div class="col-lg-9 right">
                 <div class="box shadow-sm rounded bg-white mb-3">
@@ -568,86 +550,29 @@ use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
                         <h6 class="m-0">Now</h6>
                     </div>
                     <div class="box-body p-0">
-                        @if(count($user_notifications) > 0)
-                        @foreach($user_notifications as $notif)
-                        <?php
-                                $now = Carbon\Carbon::now();
-                                $date_parse = $notif->created_at;
-                                $date = Carbon\Carbon::parse($date_parse);
-                                $diffInSeconds = $now->diffInSeconds($date);
-                                $output = null;
-                                $check = false;
-                                if ($diffInSeconds < 60) {
-                                    $output = $diffInSeconds . ' sec ago';
-                                    $check = true;
-                                } elseif ($diffInSeconds < 3600) {
-                                    $diffInMinutes = floor($diffInSeconds / 60);
-                                    $output = $diffInMinutes . ' mins ago';
-                                    $check = true;
-                                } elseif ($diffInSeconds > 3600 && $diffInSeconds <86400) {
-                                    $diffInHours = floor($diffInSeconds / 3600);
-                                    $output = $diffInHours . 'hr/s ago';
-                                    $check = true;
-                                }
-                                ?>
 
-                               
-                                @if ($check)
-                        <div class="p-3 d-flex align-items-center bg-light border-bottom osahan-post-header">
-                            <div class="dropdown-list-image mr-3">
-                                <img class="rounded-circle" src="https://github.com/JPA-EliteDeveloper/images/blob/main/logo.png?raw=true" alt="" />
-                            </div>
-                            <div class="font-weight-bold mr-3">
-                                <div class="text-truncate text-uppercase">{{$notif -> title}}</div>
-                                <div class="small">{{$notif -> message}}</div>
-                            </div>
-                            <span class="ml-auto mb-auto">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-light btn-sm rounded" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="mdi mdi-dots-vertical"></i>
-                                    </button>
-                                    <div class="dropdown-menu dropdown-menu-right">
-                                        <button class="dropdown-item" type="button"><i class="mdi mdi-delete"></i> Delete</button>
-                                        <button class="dropdown-item" type="button"><i class="mdi mdi-close"></i> Turn Off</button>
-                                    </div>
-                                </div>
-                                <br />
-                               
-                                <div class="text-right text-muted pt-1">{{$output}}</div>
-                            </span>
-                        </div>
-                        @else
-                        <div class="p-4 text-center">
-                            no notifications yet!
-                        </div>
-                        @endif
-                        @endforeach
-                        @else
-                        <div class="p-4 text-center">
-                            no notifications yet!
-                        </div>
-                        @endif
 
-                    </div>
-                </div>
-                <div class="box shadow-sm rounded bg-white mb-3">
-                    <div class="box-title border-bottom p-3">
-                        <h6 class="m-0">Previous Days</h6>
-                    </div>
-                    <div class="box-body p-0">
-                        @if(count($user_notifications) > 0)
-                        @foreach($user_notifications as $notif)
+
+                        @if(count($user_notifications_now) > 0 )
+                        @foreach($user_notifications_now as $notif)
                         <?php
                         $now = Carbon\Carbon::now();
                         $date_parse = $notif->created_at;
                         $date = Carbon\Carbon::parse($date_parse);
                         $diffInSeconds = $now->diffInSeconds($date);
-                        $check2 = false;
-                        if($diffInSeconds > 86400){
-                            $check2 = true;
+                        $output = null;
+
+                        if ($diffInSeconds < 60) {
+                            $output = $diffInSeconds . ' sec ago';
+                        } elseif ($diffInSeconds < 3600) {
+                            $diffInMinutes = floor($diffInSeconds / 60);
+                            $output = $diffInMinutes . ' mins ago';
+                        } elseif ($diffInSeconds > 3600 && $diffInSeconds < 86400) {
+                            $diffInHours = floor($diffInSeconds / 3600);
+                            $output = $diffInHours . 'hr/s ago';
                         }
                         ?>
-                        @if ($check2)
+
                         <div class="p-3 d-flex align-items-center bg-light border-bottom osahan-post-header">
                             <div class="dropdown-list-image mr-3">
                                 <img class="rounded-circle" src="https://github.com/JPA-EliteDeveloper/images/blob/main/logo.png?raw=true" alt="" />
@@ -667,19 +592,10 @@ use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
                                     </div>
                                 </div>
                                 <br />
-                                <?php
-                                $output = null;
-                                $diffInDays = $now->diffInDays($date);
-                                $output = $diffInDays . 'd ago';
-                                ?>
+
                                 <div class="text-right text-muted pt-1">{{$output}}</div>
                             </span>
                         </div>
-                        @else
-                        <div class="p-4 text-center">
-                            no notifications yet!
-                        </div>
-                        @endif
 
 
                         @endforeach
@@ -691,37 +607,93 @@ use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
                     </div>
                 </div>
+
+
+                <div class="box shadow-sm rounded bg-white mb-3">
+                    <div class="box-title border-bottom p-3">
+                        <h6 class="m-0">Previous Days</h6>
+                    </div>
+                    <div class="box-body p-0">
+
+
+
+                        @if(count($user_notifications_old) > 0 )
+                        @foreach($user_notifications_old as $notif)
+                        <?php
+                        $now = Carbon\Carbon::now();
+                        $date_parse = $notif->created_at;
+                        $date = Carbon\Carbon::parse($date_parse);
+                        $diffInDays = $now->diffInDays($date);
+                        $output = $diffInDays . 'd ago';
+
+
+                        ?>
+
+                        <div class="p-3 d-flex align-items-center bg-light border-bottom osahan-post-header">
+                            <div class="dropdown-list-image mr-3">
+                                <img class="rounded-circle" src="https://github.com/JPA-EliteDeveloper/images/blob/main/logo.png?raw=true" alt="" />
+                            </div>
+                            <div class="font-weight-bold mr-3">
+                                <div class="text-truncate text-uppercase">{{$notif -> title}}</div>
+                                <div class="small">{{$notif -> message}}</div>
+                            </div>
+                            <span class="ml-auto mb-auto">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-light btn-sm rounded" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="mdi mdi-dots-vertical"></i>
+                                    </button>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <button class="dropdown-item" type="button"><i class="mdi mdi-delete"></i> Delete</button>
+                                        <button class="dropdown-item" type="button"><i class="mdi mdi-close"></i> Turn Off</button>
+                                    </div>
+                                </div>
+                                <br />
+
+                                <div class="text-right text-muted pt-1">{{$output}}</div>
+                            </span>
+                        </div>
+
+
+                        @endforeach
+                        @else
+                        <div class="p-4 text-center">
+                            no notifications yet!
+                        </div>
+                        @endif
+
+                    </div>
+                </div>
+
             </div>
         </div>
-    </div>
 
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-    <script>
-        $(document).ready(function() {
-            $("#search").on("keyup", function() {
-                var value = $(this).val().toLowerCase();
-                $(".contacts_body .contacts .chat_list").filter(function() {
-                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+        <script>
+            $(document).ready(function() {
+                $("#search").on("keyup", function() {
+                    var value = $(this).val().toLowerCase();
+                    $(".contacts_body .contacts .chat_list").filter(function() {
+                        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                    });
                 });
-            });
-            $("#search2").on("keyup", function() {
-                var value = $(this).val().toLowerCase();
-                $(".chat_list2").filter(function() {
-                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                $("#search2").on("keyup", function() {
+                    var value = $(this).val().toLowerCase();
+                    $(".chat_list2").filter(function() {
+                        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                    });
                 });
-            });
 
-            $('#action_menu_btn').click(function() {
-                $('.action_menu').toggle();
+                $('#action_menu_btn').click(function() {
+                    $('.action_menu').toggle();
+
+                });
+                $('#profile').click(function() {
+                    $('#profile_pop').toggle();
+                });
 
             });
-            $('#profile').click(function() {
-                $('#profile_pop').toggle();
-            });
-
-        });
-    </script>
+        </script>
 </body>
 
 </html>
