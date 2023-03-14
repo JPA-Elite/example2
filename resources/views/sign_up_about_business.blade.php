@@ -16,6 +16,8 @@
     <script defer src="/_vercel/insights/script.js"></script>
     <link rel="icon" type="image/x-icon"
         href="https://github.com/JPA-EliteDeveloper/images/blob/main/logo.png?raw=true">
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4077945746622168"
+     crossorigin="anonymous"></script>
     <style>
         * {
             padding: 0;
