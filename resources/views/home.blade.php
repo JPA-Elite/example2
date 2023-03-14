@@ -13665,6 +13665,18 @@
         
 
     </div>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4077945746622168"
+     crossorigin="anonymous"></script>
+<!-- Coffee -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-4077945746622168"
+     data-ad-slot="4958495209"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
 
     <div class="f-page">
         <div class="fst-fpage-cont">
@@ -13937,18 +13949,7 @@
         </div>
         <p>© Copyrights 2022 G-Pay. All rights reserved.</p>
     </footer>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4077945746622168"
-     crossorigin="anonymous"></script>
-<!-- Coffee -->
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-4077945746622168"
-     data-ad-slot="4958495209"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
+
     <script>
         const f3_pop = document.querySelector(".f3_pop");
         const f1 = document.querySelector(".f1");
