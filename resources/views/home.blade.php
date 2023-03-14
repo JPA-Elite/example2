@@ -9,6 +9,8 @@
     <link rel="icon" type="image/x-icon" href="https://github.com/JPA-EliteDeveloper/images/blob/main/logo.png?raw=true">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script defer src="/_vercel/insights/script.js"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4077945746622168"
+     crossorigin="anonymous"></script>
    <style>
         :root {
             --background: #BFD7ED;
