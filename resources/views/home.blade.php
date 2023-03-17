@@ -11,6 +11,9 @@
     <script defer src="/_vercel/insights/script.js"></script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4077945746622168"
      crossorigin="anonymous"></script>
+     <script async custom-element="amp-auto-ads"
+        src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+</script>
    <style>
         :root {
             --background: #BFD7ED;
@@ -13665,6 +13668,9 @@
         
 
     </div>
+    <amp-auto-ads type="adsense"
+        data-ad-client="ca-pub-4077945746622168">
+</amp-auto-ads>
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4077945746622168"
      crossorigin="anonymous"></script>
 <!-- Coffee -->
