@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="ssDjWFDfZj1GC5FRFRqwnk8BbRd8XP1j_pYPju1cEuY" />
     <title>Homepage | G-Pay</title>
     <link rel="icon" type="image/x-icon" href="https://github.com/JPA-EliteDeveloper/images/blob/main/logo.png?raw=true">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
